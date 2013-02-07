@@ -1,8 +1,6 @@
-# Codeigniter OAuth 2.0
+# OAuth 2.0 Composer Package
 
 Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
-
-Note that this Spark ONLY provides the authorization mechanism. There's an example controller below, however in a later version there will be a full controller.
 
 ## Examples
 
@@ -18,12 +16,6 @@ authenticates with an OAuth 2 provider, which in this example would be Twitter i
 - Soundcloud
 - Windows Live
 - YouTube
-
-
-## TODO
-
-- Requests should be done through a more stable system, there however isn't a Request class in CodeIgniter.
-- Add unit tests and get on Travis
 
 ## Usage Example
 
@@ -91,4 +83,4 @@ Contribute
 3. Write a test which shows that the bug was fixed or that the feature works as expected
 4. Send a pull request and bug me until I merge it
 
-[the repository]: https://github.com/philsturgeon/codeigniter-oauth2
+[the repository]: https://github.com/chrisnharvey/oauth2
