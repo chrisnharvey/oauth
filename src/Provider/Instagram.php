@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Instagram OAuth2 Provider
  *
@@ -9,7 +12,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class OAuth2_Provider_Instagram extends OAuth2_Provider
+class Instagram extends \OAuth\Provider
 {
 	/**
 	 * @var  string  scope separator, most use "," but some like Google are spaces

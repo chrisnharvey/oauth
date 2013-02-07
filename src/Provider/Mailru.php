@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Mailru OAuth2 Provider
  *
@@ -7,7 +10,7 @@
  * @author     Lavr Lyndin
  */
 
-class OAuth2_Provider_Mailru extends OAuth2_Provider
+class Mailru extends \OAuth\Provider
 {
 	public $method = 'POST';
 

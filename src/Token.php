@@ -1,4 +1,6 @@
 <?php
+
+namespace OAuth;
 /**
  * OAuth2 Token
  *
@@ -8,7 +10,7 @@
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-abstract class OAuth2_Token {
+abstract class Token {
 
 	/**
 	 * Create a new token object.

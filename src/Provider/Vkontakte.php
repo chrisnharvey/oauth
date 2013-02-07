@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Vkontakte OAuth2 Provider
  *
@@ -7,7 +10,7 @@
  * @author     Lavr Lyndin
  */
 
-class OAuth2_Provider_Vkontakte extends OAuth2_Provider
+class Vkontakte extends \OAuth\Provider
 {
 	protected $method = 'POST';
 	public $uid_key = 'user_id';

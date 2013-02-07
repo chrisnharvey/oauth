@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * App.net OAuth2 Provider
  *
@@ -7,7 +10,7 @@
  * @author     Brennan Novak
  */
  
-class OAuth2_Provider_Appnet extends OAuth2_Provider {
+class Appnet extends \OAuth\Provider {
 
 	/** 
 	 * @array scope items for App.net

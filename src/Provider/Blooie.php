@@ -1,6 +1,9 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-class OAuth2_Provider_Blooie extends OAuth2_Provider
+namespace OAuth\Provider;
+
+
+class Blooie extends \OAuth\Provider
 {  
 	public $scope = array('user.profile', 'user.picture');
 

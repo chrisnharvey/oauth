@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Windows Live OAuth2 Provider
  *
@@ -9,7 +12,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class OAuth2_Provider_Windowslive extends OAuth2_Provider
+class Windowslive extends \OAuth\Provider
 {	
 	protected $scope = array('wl.basic', 'wl.emails');
 	

@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Yandex OAuth2 Provider
  *
@@ -7,7 +10,7 @@
  * @author     Lavr Lyndin
  */
 
-class OAuth2_Provider_Yandex extends OAuth2_Provider
+class Yandex extends \OAuth\Provider
 {
 	public $method = 'POST';
 	

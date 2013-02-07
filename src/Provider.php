@@ -1,4 +1,6 @@
 <?php
+
+namespace OAuth;
 /**
  * OAuth2 Provider
  *
@@ -9,7 +11,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-abstract class OAuth2_Provider
+abstract class Provider
 {
 	/**
 	 * @var  string  provider name

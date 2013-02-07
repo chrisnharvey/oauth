@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+namespace OAuth\Provider;
+
 /**
  * Soundcloud OAuth2 Provider
  *
@@ -9,7 +12,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class OAuth2_Provider_Soundcloud extends OAuth2_Provider
+class Soundcloud extends \OAuth\Provider
 {	
 	/**
 	 * @var  string  the method to use when requesting tokens
