@@ -1,15 +1,12 @@
 <?php
 
-include('Exception.php');
-include('Token.php');
-include('Provider.php');
-
+namespace OAuth;
 /**
  * OAuth2.0
  *
  * @author Phil Sturgeon < @philsturgeon >
  */
-class OAuth2 {
+class OAuth {
 
 	/**
 	 * Create a new provider.
@@ -21,13 +18,11 @@ class OAuth2 {
 	 * @param   array  $options provider options
 	 * @return  OAuth2_Provider
 	 */
-	public static function provider($name, array $options = NULL)
+	public function __construct($name, array $options = NULL)
 	{
 		$name = ucfirst(strtolower($name));
 
-		include_once 'Provider/'.$name.'.php';
-
-		$class = 'OAuth2_Provider_'.$name;
+		$class = 'OAuth\\Provider\\'.$name;
 
 		return new $class($options);
 	}
