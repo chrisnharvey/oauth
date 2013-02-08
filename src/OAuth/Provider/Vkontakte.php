@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Vkontakte OAuth2 Provider
  *
@@ -15,17 +17,17 @@ class Vkontakte extends \OAuth\OAuth2\Provider
 	protected $method = 'POST';
 	public $uid_key = 'user_id';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'http://oauth.vk.com/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://oauth.vk.com/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$scope = array('nickname', 'screen_name','photo_big');
 		$url = 'https://api.vk.com/method/users.get?'.http_build_query(array(

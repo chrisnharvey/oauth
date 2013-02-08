@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Mailru OAuth2 Provider
  *
@@ -14,12 +16,12 @@ class Mailru extends \OAuth\OAuth2\Provider
 {
 	public $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://connect.mail.ru/oauth/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://connect.mail.ru/oauth/token';
 	}
@@ -34,7 +36,7 @@ class Mailru extends \OAuth\OAuth2\Provider
 		return md5($params . $secret_key);
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$request_params = array(
 			'app_id' => $this->client_id,

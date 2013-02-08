@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Foursquare OAuth2 Provider
  *
@@ -16,17 +18,17 @@ class Foursquare extends \OAuth\OAuth2\Provider
 {  
 	public $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://foursquare.com/oauth2/authenticate';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://foursquare.com/oauth2/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$url = 'https://api.foursquare.com/v2/users/self?'.http_build_query(array(
 			'oauth_token' => $token->access_token,

@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Yandex OAuth2 Provider
  *
@@ -14,17 +16,17 @@ class Yandex extends \OAuth\OAuth2\Provider
 {
 	public $method = 'POST';
 	
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://oauth.yandex.ru/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://oauth.yandex.ru/token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$opts = array(
 			'http' => array(

@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * App.net OAuth2 Provider
  *
@@ -28,17 +30,17 @@ class Appnet extends \OAuth\OAuth2\Provider {
 	 * @var  string  the method to use when requesting tokens
 	 */
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://alpha.app.net/oauth/authenticate';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://alpha.app.net/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{	
 		$url = 'https://alpha-api.app.net/stream/0/users/me?'.http_build_query(array(
 			'access_token' => $token->access_token,

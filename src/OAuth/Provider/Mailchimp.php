@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Mailchimp OAuth2 Provider
  *
@@ -19,17 +21,17 @@ class Mailchimp extends \OAuth\OAuth2\Provider
 	 */
 	protected $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://login.mailchimp.com/oauth2/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://login.mailchimp.com/oauth2/token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		// Create a response from the request
 		return array(

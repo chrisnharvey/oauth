@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Soundcloud OAuth2 Provider
  *
@@ -19,17 +21,17 @@ class Soundcloud extends \OAuth\OAuth2\Provider
 	 */
 	protected $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://soundcloud.com/connect';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://api.soundcloud.com/oauth2/token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$url = 'https://api.soundcloud.com/me.json?'.http_build_query(array(
 			'oauth_token' => $token->access_token,

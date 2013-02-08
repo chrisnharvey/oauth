@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * GitHub OAuth2 Provider
  *
@@ -14,17 +16,17 @@ namespace OAuth\Provider;
 
 class Github extends \OAuth\OAuth2\Provider
 {
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://github.com/login/oauth/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://github.com/login/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$url = 'https://api.github.com/user?'.http_build_query(array(
 			'access_token' => $token->access_token,

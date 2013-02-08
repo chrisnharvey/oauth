@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Instagram OAuth2 Provider
  *
@@ -24,17 +26,17 @@ class Instagram extends \OAuth\OAuth2\Provider
 	 */
 	public $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://api.instagram.com/oauth/authorize';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://api.instagram.com/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$user = $token->user;
 

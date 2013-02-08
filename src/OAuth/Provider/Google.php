@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Google OAuth2 Provider
  *
@@ -24,12 +26,12 @@ class Google extends \OAuth\OAuth2\Provider
 	 */
 	public $scope_seperator = ' ';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://accounts.google.com/o/oauth2/auth';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://accounts.google.com/o/oauth2/token';
 	}
@@ -64,7 +66,7 @@ class Google extends \OAuth\OAuth2\Provider
 		return parent::access($code, $options);
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&'.http_build_query(array(
 			'access_token' => $token->access_token,

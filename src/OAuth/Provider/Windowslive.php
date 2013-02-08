@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * Windows Live OAuth2 Provider
  *
@@ -22,13 +24,13 @@ class Windowslive extends \OAuth\OAuth2\Provider
 	protected $method = 'POST';
 	
 	// authorise url
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://oauth.live.com/authorize';
 	}
 	
 	// access token url
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://oauth.live.com/token';
 	}
@@ -39,7 +41,7 @@ class Windowslive extends \OAuth\OAuth2\Provider
 	** use of scopes, check out the document at
 	** http://msdn.microsoft.com/en-gb/library/hh243648.aspx#user
 	*********************************/
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		// define the get user information token
 		$url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(

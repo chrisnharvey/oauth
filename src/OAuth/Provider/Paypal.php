@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 /**
  * PayPal OAuth2 Provider
  *
@@ -24,17 +26,17 @@ class Paypal extends \OAuth\OAuth2\Provider
      */
     protected $method = 'POST';
 
-    public function url_authorize()
+    public function authorizeUrl()
     {
         return 'https://identity.x.com/xidentity/resources/authorize';
     }
 
-    public function url_access_token()
+    public function accessTokenUrl()
     {
         return 'https://identity.x.com/xidentity/oauthtokenservice';
     }
 
-    public function get_user_info(OAuth2_Token_Access $token)
+    public function getUserInfo(Access $token)
     {
         $url = 'https://identity.x.com/xidentity/resources/profile/me?' . http_build_query(array(
             'oauth_token' => $token->access_token

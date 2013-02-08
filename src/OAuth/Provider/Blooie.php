@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth2\Token\Access;
+
 
 class Blooie extends \OAuth\OAuth2\Provider
 {  
@@ -9,7 +11,7 @@ class Blooie extends \OAuth\OAuth2\Provider
 
 	public $method = 'POST';
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		switch (ENVIRONMENT)
 		{
@@ -28,7 +30,7 @@ class Blooie extends \OAuth\OAuth2\Provider
 		
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		switch (ENVIRONMENT)
 		{
@@ -45,7 +47,7 @@ class Blooie extends \OAuth\OAuth2\Provider
 		}
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(Access $token)
 	{
 		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
 			'access_token' => $token->access_token,
