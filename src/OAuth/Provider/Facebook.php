@@ -12,21 +12,21 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Facebook extends \OAuth\Provider
+class Facebook extends \OAuth\OAuth2\Provider
 {
 	protected $scope = array('offline_access', 'email', 'read_stream');
 
-	public function url_authorize()
+	public function authorizeUrl()
 	{
 		return 'https://www.facebook.com/dialog/oauth';
 	}
 
-	public function url_access_token()
+	public function accessTokenUrl()
 	{
 		return 'https://graph.facebook.com/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function getUserInfo(\OAuth\OAuth2\Token\Access $token)
 	{
 		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
 			'access_token' => $token->access_token,
