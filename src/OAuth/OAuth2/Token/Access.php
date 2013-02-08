@@ -10,27 +10,27 @@ namespace OAuth\OAuth2\Token;
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-class Access extends \OAuth\OAuth2\Token
+class Access
 {
 	/**
 	 * @var  string  access_token
 	 */
-	protected $access_token;
+	public $access_token;
 
 	/**
 	 * @var  int  expires
 	 */
-	protected $expires;
+	public $expires;
 
 	/**
 	 * @var  string  refresh_token
 	 */
-	protected $refresh_token;
+	public $refresh_token;
 
 	/**
 	 * @var  string  uid
 	 */
-	protected $uid;
+	public $uid;
 
 	/**
 	 * Sets the token, expiry, etc values.

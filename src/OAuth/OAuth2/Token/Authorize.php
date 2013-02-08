@@ -10,17 +10,17 @@ namespace OAuth\OAuth2\Token;
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-class Authorize extends \OAuth\OAuth2\Token
+class Authorize
 {
 	/**
 	 * @var  string  code
 	 */
-	protected $code;
+	public $code;
 
 	/**
 	 * @var  string  redirect_uri
 	 */
-	protected $redirect_uri;
+	public $redirect_uri;
 
 	/**
 	 * Sets the token, expiry, etc values.
