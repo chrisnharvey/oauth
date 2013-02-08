@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Github extends \OAuth\Provider
+class Github extends \OAuth\OAuth2\Provider
 {
 	public function url_authorize()
 	{

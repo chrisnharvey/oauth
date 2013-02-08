@@ -10,7 +10,7 @@ namespace OAuth\Provider;
  * @author     Lavr Lyndin
  */
 
-class Yandex extends \OAuth\Provider
+class Yandex extends \OAuth\OAuth2\Provider
 {
 	public $method = 'POST';
 	

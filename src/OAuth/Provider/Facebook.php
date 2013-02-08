@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Facebook extends \OAuth\Provider
+class Facebook extends \OAuth\OAuth2\Provider
 {
 	protected $scope = array('offline_access', 'email', 'read_stream');
 

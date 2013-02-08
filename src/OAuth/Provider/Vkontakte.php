@@ -10,7 +10,7 @@ namespace OAuth\Provider;
  * @author     Lavr Lyndin
  */
 
-class Vkontakte extends \OAuth\Provider
+class Vkontakte extends \OAuth\OAuth2\Provider
 {
 	protected $method = 'POST';
 	public $uid_key = 'user_id';

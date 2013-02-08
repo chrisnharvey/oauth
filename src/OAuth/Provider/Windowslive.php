@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Windowslive extends \OAuth\Provider
+class Windowslive extends \OAuth\OAuth2\Provider
 {	
 	protected $scope = array('wl.basic', 'wl.emails');
 	

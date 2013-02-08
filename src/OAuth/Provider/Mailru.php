@@ -10,7 +10,7 @@ namespace OAuth\Provider;
  * @author     Lavr Lyndin
  */
 
-class Mailru extends \OAuth\Provider
+class Mailru extends \OAuth\OAuth2\Provider
 {
 	public $method = 'POST';
 
