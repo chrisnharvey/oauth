@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth\Token;
+namespace OAuth\OAuth2\Token;
 /**
  * OAuth2 Token
  *
@@ -10,7 +10,7 @@ namespace OAuth\Token;
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-class Authorize extends \OAuth\Token
+class Authorize extends \OAuth\OAuth2\Token
 {
 	/**
 	 * @var  string  code
