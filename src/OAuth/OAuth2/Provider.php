@@ -1,6 +1,10 @@
 <?php
 
 namespace OAuth\OAuth2;
+
+use \OAuth\OAuth2\Token\Access;
+use \OAuth\OAuth2\Token\Authorize;
+
 /**
  * OAuth2 Provider
  *
@@ -207,11 +211,11 @@ abstract class Provider
 		switch ($params['grant_type'])
 		{
 			case 'authorization_code':
-				return new \OAuth\OAuth2\Token\Access($return);
+				return new Access($return);
 			break;
 
 			case 'refresh_token':
-				return OAuth2_Token::factory('refresh', $return);
+				return new Refresh($return);
 			break;
 		}
 		
