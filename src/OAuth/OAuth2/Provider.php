@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth;
+namespace OAuth\OAuth2;
 /**
  * OAuth2 Provider
  *
@@ -58,15 +58,12 @@ abstract class Provider
 	 */
 	public function __construct(array $options = array())
 	{
-		if ( ! $this->name)
-		{
-			// Attempt to guess the name from the class name
-			$this->name = strtolower(substr(get_class($this), strlen('OAuth2_Provider_')));
+		if (empty($options['id'])) {
+			throw new Exception('Required option not provided: id');
 		}
 
-		if (empty($options['id']))
-		{
-			throw new Exception('Required option not provided: id');
+		if (empty($options['redirect_url'])) {
+			throw new Exception('Required option not provided: redirect_url');
 		}
 
 		$this->client_id = $options['id'];
@@ -75,7 +72,7 @@ abstract class Provider
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = site_url(get_instance()->uri->uri_string());
+		$this->redirect_uri = $options['redirect_url'];
 	}
 
 	/**
@@ -99,7 +96,7 @@ abstract class Provider
 	 *
 	 * @return  string
 	 */
-	abstract public function url_authorize();
+	abstract public function authorizeUrl();
 
 	/**
 	 * Returns the access token endpoint for the provider.
@@ -108,13 +105,13 @@ abstract class Provider
 	 *
 	 * @return  string
 	 */
-	abstract public function url_access_token();
+	abstract public function accessTokenUrl();
 
 	/**
 	 * @param OAuth2_Token_Access $token
 	 * @return array basic user info
 	 */
-	abstract public function get_user_info(OAuth2_Token_Access $token);
+	abstract public function getUserInfo(\OAuth\OAuth2\Token\Access $token);
 
 	/*
 	* Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
@@ -122,7 +119,6 @@ abstract class Provider
 	public function authorize($options = array())
 	{
 		$state = md5(uniqid(rand(), true));
-		get_instance()->session->set_userdata('state', $state);
 
 		$params = array(
 			'client_id' 		=> $this->client_id,
@@ -135,7 +131,7 @@ abstract class Provider
 		
 		$params = array_merge($params, $this->params);
 		
-		redirect($this->url_authorize().'?'.http_build_query($params));
+		header("Location: {$this->authorizeUrl()}?".http_build_query($params));
 	}
 
 	/*
@@ -167,7 +163,7 @@ abstract class Provider
 		}
 
 		$response = null;
-		$url = $this->url_access_token();
+		$url = $this->accessTokenUrl();
 
 		switch ($this->method)
 		{
@@ -182,17 +178,6 @@ abstract class Provider
 			break;
 
 			case 'POST':
-
-				/* 	$ci = get_instance();
-
-				$ci->load->spark('curl/1.2.1');
-
-				$ci->curl
-					->create($url)
-					->post($params, array('failonerror' => false));
-
-				$response = $ci->curl->execute();
-				*/
 
 				$opts = array(
 					'http' => array(
@@ -222,7 +207,7 @@ abstract class Provider
 		switch ($params['grant_type'])
 		{
 			case 'authorization_code':
-				return OAuth2_Token::factory('access', $return);
+				return new \OAuth\OAuth2\Token\Access($return);
 			break;
 
 			case 'refresh_token':
