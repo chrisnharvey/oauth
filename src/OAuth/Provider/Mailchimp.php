@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Mailchimp extends \OAuth\Provider
+class Mailchimp extends \OAuth\OAuth2\Provider
 {
 	/**
 	 * @var  string  the method to use when requesting tokens

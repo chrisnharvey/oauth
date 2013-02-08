@@ -3,7 +3,7 @@
 namespace OAuth\Provider;
 
 
-class Blooie extends \OAuth\Provider
+class Blooie extends \OAuth\OAuth2\Provider
 {  
 	public $scope = array('user.profile', 'user.picture');
 

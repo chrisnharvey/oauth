@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Instagram extends \OAuth\Provider
+class Instagram extends \OAuth\OAuth2\Provider
 {
 	/**
 	 * @var  string  scope separator, most use "," but some like Google are spaces

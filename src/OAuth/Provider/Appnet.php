@@ -10,7 +10,7 @@ namespace OAuth\Provider;
  * @author     Brennan Novak
  */
  
-class Appnet extends \OAuth\Provider {
+class Appnet extends \OAuth\OAuth2\Provider {
 
 	/** 
 	 * @array scope items for App.net

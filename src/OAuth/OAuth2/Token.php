@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth;
+namespace OAuth\OAuth2;
 /**
  * OAuth2 Token
  *

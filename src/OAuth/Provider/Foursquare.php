@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Foursquare extends \OAuth\Provider
+class Foursquare extends \OAuth\OAuth2\Provider
 {  
 	public $method = 'POST';
 

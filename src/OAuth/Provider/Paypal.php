@@ -12,7 +12,7 @@ namespace OAuth\Provider;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Paypal extends \OAuth\Provider
+class Paypal extends \OAuth\OAuth2\Provider
 {
     /**
      * @var  string  default scope (useful if a scope is required for user info)
