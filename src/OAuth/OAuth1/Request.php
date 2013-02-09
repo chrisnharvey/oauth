@@ -1,29 +1,9 @@
 <?php
 
-class OAuth_Request {
+namespace OAuth\OAuth1;
 
-	/**
-	 * Create a new request object.
-	 *
-	 *     $request = OAuth_Request::forge('token', 'GET', 'http://example.com/oauth/request_token');
-	 *
-	 * @param   string  request type
-	 * @param   string  request URL
-	 * @param   string  request method
-	 * @param   array   request parameters
-	 * @return  Request
-	 */
-	public static function forge($type, $method, $url = NULL, array $params = NULL)
-	{
-		$type = ucfirst(strtolower($type));
-
-		include_once "Request/{$type}.php";
-
-		$class = 'OAuth_Request_'.$type;
-		
-		return new $class($method, $url, $params);
-	}
-
+class Request
+{
 	/**
 	 * @var  integer  connection timeout
 	 */

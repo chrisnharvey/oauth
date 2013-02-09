@@ -1,6 +1,8 @@
 <?php
 
-class OAuth_Request_Resource extends OAuth_Request {
+namespace OAuth\OAuth1\Request;
+
+class Resource extends \OAuth\OAuth1\Request {
 
 	protected $name = 'resource';
 
