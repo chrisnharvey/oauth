@@ -16,26 +16,26 @@ use \OAuth\OAuth2\Token\Access;
 
 class Mailchimp extends \OAuth\OAuth2\Provider
 {
-	/**
-	 * @var  string  the method to use when requesting tokens
-	 */
-	protected $method = 'POST';
+    /**
+     * @var  string  the method to use when requesting tokens
+     */
+    protected $method = 'POST';
 
-	public function authorizeUrl()
-	{
-		return 'https://login.mailchimp.com/oauth2/authorize';
-	}
+    public function authorizeUrl()
+    {
+        return 'https://login.mailchimp.com/oauth2/authorize';
+    }
 
-	public function accessTokenUrl()
-	{
-		return 'https://login.mailchimp.com/oauth2/token';
-	}
+    public function accessTokenUrl()
+    {
+        return 'https://login.mailchimp.com/oauth2/token';
+    }
 
-	public function getUserInfo(Access $token)
-	{
-		// Create a response from the request
-		return array(
-			'uid' => $token->access_token,
-		);
-	}
+    public function getUserInfo(Access $token)
+    {
+        // Create a response from the request
+        return array(
+            'uid' => $token->access_token,
+        );
+    }
 }

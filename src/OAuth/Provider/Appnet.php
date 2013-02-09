@@ -14,47 +14,47 @@ use \OAuth\OAuth2\Token\Access;
  
 class Appnet extends \OAuth\OAuth2\Provider {
 
-	/** 
-	 * @array scope items for App.net
-	 */ 
-	protected $scope = array('stream','email','write_post','follow','messages','export');
-	
-	public $name = 'appnet';
+    /** 
+     * @array scope items for App.net
+     */ 
+    protected $scope = array('stream','email','write_post','follow','messages','export');
+    
+    public $name = 'appnet';
 
-	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
-	 */
-	public $scope_seperator = ',';
+    /**
+     * @var  string  scope separator, most use "," but some like Google are spaces
+     */
+    public $scope_seperator = ',';
 
-	/**
-	 * @var  string  the method to use when requesting tokens
-	 */
+    /**
+     * @var  string  the method to use when requesting tokens
+     */
 
-	public function authorizeUrl()
-	{
-		return 'https://alpha.app.net/oauth/authenticate';
-	}
+    public function authorizeUrl()
+    {
+        return 'https://alpha.app.net/oauth/authenticate';
+    }
 
-	public function accessTokenUrl()
-	{
-		return 'https://alpha.app.net/oauth/access_token';
-	}
+    public function accessTokenUrl()
+    {
+        return 'https://alpha.app.net/oauth/access_token';
+    }
 
-	public function getUserInfo(Access $token)
-	{	
-		$url = 'https://alpha-api.app.net/stream/0/users/me?'.http_build_query(array(
-			'access_token' => $token->access_token,
-		));
+    public function getUserInfo(Access $token)
+    {   
+        $url = 'https://alpha-api.app.net/stream/0/users/me?'.http_build_query(array(
+            'access_token' => $token->access_token,
+        ));
 
-		$user = json_decode(file_get_contents($url));
+        $user = json_decode(file_get_contents($url));
 
-		// Create a response from the request
-		return array(
-			'uid' => $user->id,
-			'nickname' => $user->username,
-			'name' => $user->name
-		);
+        // Create a response from the request
+        return array(
+            'uid' => $user->id,
+            'nickname' => $user->username,
+            'name' => $user->name
+        );
 
-	}
+    }
 
 }

@@ -16,36 +16,36 @@ use \OAuth\OAuth2\Token\Access;
 
 class Foursquare extends \OAuth\OAuth2\Provider
 {  
-	public $method = 'POST';
+    public $method = 'POST';
 
-	public function authorizeUrl()
-	{
-		return 'https://foursquare.com/oauth2/authenticate';
-	}
+    public function authorizeUrl()
+    {
+        return 'https://foursquare.com/oauth2/authenticate';
+    }
 
-	public function accessTokenUrl()
-	{
-		return 'https://foursquare.com/oauth2/access_token';
-	}
+    public function accessTokenUrl()
+    {
+        return 'https://foursquare.com/oauth2/access_token';
+    }
 
-	public function getUserInfo(Access $token)
-	{
-		$url = 'https://api.foursquare.com/v2/users/self?'.http_build_query(array(
-			'oauth_token' => $token->access_token,
-		));
+    public function getUserInfo(Access $token)
+    {
+        $url = 'https://api.foursquare.com/v2/users/self?'.http_build_query(array(
+            'oauth_token' => $token->access_token,
+        ));
 
-		$response = json_decode(file_get_contents($url));
+        $response = json_decode(file_get_contents($url));
 
-		$user = $response->response->user;
+        $user = $response->response->user;
 
-		// Create a response from the request
-		return array(
-			'uid' => $user->id,
-			//'nickname' => $user->login,
-			'name' => sprintf('%s %s', $user->firstName, $user->lastName),
-			'email' => $user->contact->email,
-			'image' => $user->photo,
-			'location' => $user->homeCity,
-		);
-	}
+        // Create a response from the request
+        return array(
+            'uid' => $user->id,
+            //'nickname' => $user->login,
+            'name' => sprintf('%s %s', $user->firstName, $user->lastName),
+            'email' => $user->contact->email,
+            'image' => $user->photo,
+            'location' => $user->homeCity,
+        );
+    }
 }

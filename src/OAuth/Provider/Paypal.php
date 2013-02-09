@@ -43,9 +43,9 @@ class Paypal extends \OAuth\OAuth2\Provider
         ));
 
         $user = json_decode(file_get_contents($url),true);
-		$user = $user['identity'];
+        $user = $user['identity'];
 
-		return array(
+        return array(
             'uid' => $user['userId'],
             'nickname' => url_title($user['fullName'], '_', true),
             'name' => $user['fullName'],
@@ -56,8 +56,8 @@ class Paypal extends \OAuth\OAuth2\Provider
             'image' => null,
             'description' => null,
             'urls' => array(
-				'PayPal' => null
-			)
+                'PayPal' => null
+            )
         );
     }
 

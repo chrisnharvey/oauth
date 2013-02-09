@@ -16,38 +16,38 @@ use \OAuth\OAuth2\Token\Access;
 
 class Instagram extends \OAuth\OAuth2\Provider
 {
-	/**
-	 * @var  string  scope separator, most use "," but some like Google are spaces
-	 */
-	public $scope_seperator = '+';
+    /**
+     * @var  string  scope separator, most use "," but some like Google are spaces
+     */
+    public $scope_seperator = '+';
 
-	/**
-	 * @var  string  the method to use when requesting tokens
-	 */
-	public $method = 'POST';
+    /**
+     * @var  string  the method to use when requesting tokens
+     */
+    public $method = 'POST';
 
-	public function authorizeUrl()
-	{
-		return 'https://api.instagram.com/oauth/authorize';
-	}
+    public function authorizeUrl()
+    {
+        return 'https://api.instagram.com/oauth/authorize';
+    }
 
-	public function accessTokenUrl()
-	{
-		return 'https://api.instagram.com/oauth/access_token';
-	}
+    public function accessTokenUrl()
+    {
+        return 'https://api.instagram.com/oauth/access_token';
+    }
 
-	public function getUserInfo(Access $token)
-	{
-		$user = $token->user;
+    public function getUserInfo(Access $token)
+    {
+        $user = $token->user;
 
-		return array(
-			'uid' => $user->id,
-			'nickname' => $user->username,
-			'name' => $user->full_name,
-			'image' => $user->profile_picture,
-			'urls' => array(
-			  'website' => $user->website,
-			),
-		);
-	}
+        return array(
+            'uid' => $user->id,
+            'nickname' => $user->username,
+            'name' => $user->full_name,
+            'image' => $user->profile_picture,
+            'urls' => array(
+              'website' => $user->website,
+            ),
+        );
+    }
 }
