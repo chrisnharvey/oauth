@@ -2,7 +2,7 @@
 
 namespace OAuth\Provider;
 
-use \OAuth\OAuth1\Token\Access;
+use \OAuth\OAuth1\Token;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Request\Resource;
 
@@ -28,8 +28,12 @@ class Twitter extends \OAuth\OAuth1\Provider
         return 'https://api.twitter.com/oauth/access_token';
     }
     
-    public function getUserInfo(Consumer $consumer, Access $token)
-    {       
+    public function getUserInfo(Consumer $consumer, Token $token)
+    {
+        if ( ! $token instanceof Access) {
+            throw new Exception('Token must be an instance of Access');
+        }
+        
         // Create a new GET request with the required parameters
         $request = new Resource('GET', 'http://api.twitter.com/1/users/lookup.json', array(
             'oauth_consumer_key' => $consumer->key,
