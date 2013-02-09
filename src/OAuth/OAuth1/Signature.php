@@ -1,27 +1,13 @@
 <?php
 
-abstract class OAuth_Signature {
+namespace OAuth\OAuth1;
 
-	/**
-	 * Create a new signature object by name.
-	 *
-	 *     $signature = Signature::forge('HMAC-SHA1');
-	 *
-	 * @param   string  signature name: HMAC-SHA1, PLAINTEXT, etc
-	 * @param   array   signature options
-	 * @return  Signature
-	 */
-	public static function forge($name, array $options = NULL)
-	{
-		$name = str_replace('-', '_', $name);
+use \OAuth\OAuth1\Request;
+use \OAuth\OAuth1\Consumer;
+use \OAuth\OAuth1\Token;
 
-		// Create the class name as a base of this class
-		$class = 'OAuth_Signature_'.$name;
-
-		class_exists($class) or include 'Signature/'.ucfirst($name).'.php';
-
-		return new $class($options);
-	}
+abstract class Signature
+{
 
 	/**
 	 * @var  string  signature name: HMAC-SHA1, PLAINTEXT, etc
@@ -53,7 +39,7 @@ abstract class OAuth_Signature {
 	 * @return  string
 	 * @uses    OAuth::urlencode
 	 */
-	public function key(OAuth_Consumer $consumer, OAuth_Token $token = NULL)
+	public function key(Consumer $consumer, Token $token = NULL)
 	{
 		$key = OAuth::urlencode($consumer->secret).'&';
 
@@ -65,8 +51,8 @@ abstract class OAuth_Signature {
 		return $key;
 	}
 
-	abstract public function sign(OAuth_Request $request, OAuth_Consumer $consumer, OAuth_Token $token = NULL);
+	abstract public function sign(Request $request, Consumer $consumer, Token $token = NULL);
 
-	abstract public function verify($signature, OAuth_Request $request, OAuth_Consumer $consumer, OAuth_Token $token = NULL);
+	abstract public function verify($signature, Request $request, Consumer $consumer, Token $token = NULL);
 
 } // End Signature

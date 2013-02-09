@@ -1,26 +1,9 @@
 <?php
 
-abstract class OAuth_Token {
+namespace OAuth\OAuth1;
 
-	/**
-	 * Create a new token object.
-	 *
-	 *     $token = OAuth_Token::forge($name);
-	 *
-	 * @param   string  token type
-	 * @param   array   token options
-	 * @return  Token
-	 */
-	public static function forge($name, array $options = NULL)
-	{
-		$name = ucfirst(strtolower($name));
-
-		$class = 'OAuth_Token_'.$name;
-
-		class_exists($class) or include 'Token/'.$name.'.php';
-
-		return new $class($options);
-	}
+abstract class Token
+{
 
 	/**
 	 * @var  string  token type name: request, access

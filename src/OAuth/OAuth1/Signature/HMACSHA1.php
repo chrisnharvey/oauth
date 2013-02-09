@@ -1,4 +1,7 @@
 <?php
+
+namespace OAuth\OAuth1\Signature;
+
 /**
  * The HMAC-SHA1 signature provides secure signing using the HMAC-SHA1
  * algorithm as defined by [RFC2104](http://tools.ietf.org/html/rfc2104).
@@ -7,7 +10,8 @@
  *
  */
 
-class OAuth_Signature_HMAC_SHA1 extends OAuth_Signature {
+class HMACSHA1 extends \OAuth\OAuth1\Signature
+{
 
 	protected $name = 'HMAC-SHA1';
 
