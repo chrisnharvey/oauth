@@ -2,6 +2,10 @@
 
 namespace OAuth\OAuth1\Signature;
 
+use \OAuth\OAuth1\Request;
+use \OAuth\OAuth1\Consumer;
+use \OAuth\OAuth1\Token;
+
 /**
  * The HMAC-SHA1 signature provides secure signing using the HMAC-SHA1
  * algorithm as defined by [RFC2104](http://tools.ietf.org/html/rfc2104).
@@ -30,7 +34,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
 	 * @uses    Signature::key
 	 * @uses    Request::base_string
 	 */
-	public function sign(OAuth_Request $request, OAuth_Consumer $consumer, OAuth_Token $token = NULL)
+	public function sign(Request $request, Consumer $consumer, Token $token = NULL)
 	{
 		// Get the signing key
 		$key = $this->key($consumer, $token);
@@ -59,7 +63,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
 	 * @return  boolean
 	 * @uses    Signature_HMAC_SHA1::sign
 	 */
-	public function verify($signature, OAuth_Request $request, OAuth_Consumer $consumer, OAuth_Token $token = NULL)
+	public function verify($signature, Request $request, Consumer $consumer, Token $token = NULL)
 	{
 		return $signature === $this->sign($request, $consumer, $token);
 	}
