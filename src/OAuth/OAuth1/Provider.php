@@ -1,4 +1,11 @@
 <?php
+
+namespace OAuth\OAuth1;
+
+use \OAuth\OAuth1\Token;
+use \OAuth\OAuth1\Consumer;
+use \OAuth\OAuth1\Signature;
+
 /**
  * OAuth Provider
  *
@@ -9,7 +16,8 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-abstract class OAuth_Provider {
+abstract class Provider
+{
 
 	/**
 	 * @var  string  provider name
@@ -59,7 +67,9 @@ abstract class OAuth_Provider {
 		if ( ! is_object($this->signature))
 		{
 			// Convert the signature name into an object
-			$this->signature = OAuth_Signature::forge($this->signature);
+			$class = str_replace('-', '', $this->signature);
+			$class = "\OAuth\OAuth1\Signature\\$class";
+			$this->signature = new $class;
 		}
 
 		if ( ! $this->name)
@@ -90,7 +100,7 @@ abstract class OAuth_Provider {
 	 *
 	 * @return  string
 	 */
-	abstract public function url_request_token();
+	abstract public function requestTokenUrl();
 
 	/**
 	 * Returns the authorization URL for the provider.
@@ -99,7 +109,7 @@ abstract class OAuth_Provider {
 	 *
 	 * @return  string
 	 */
-	abstract public function url_authorize();
+	abstract public function authorizeUrl();
 
 	/**
 	 * Returns the access token endpoint for the provider.
@@ -108,7 +118,7 @@ abstract class OAuth_Provider {
 	 *
 	 * @return  string
 	 */
-	abstract public function url_access_token();
+	abstract public function accessTokenUrl();
 	
 	/**
 	 * Returns basic information about the user.
@@ -117,7 +127,7 @@ abstract class OAuth_Provider {
 	 *
 	 * @return  string
 	 */
-	abstract public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token);
+	abstract public function getUserInfo(Consumer $consumer, Token $token);
 
 	/**
 	 * Ask for a request token from the OAuth provider.
