@@ -4,6 +4,7 @@ namespace OAuth\Provider;
 
 use \OAuth\OAuth1\Token\Access;
 use \OAuth\OAuth1\Consumer;
+use \OAuth\OAuth1\Request\Resource;
 
 class Twitter extends \OAuth\OAuth1\Provider
 {
@@ -30,7 +31,7 @@ class Twitter extends \OAuth\OAuth1\Provider
     public function getUserInfo(Consumer $consumer, Access $token)
     {       
         // Create a new GET request with the required parameters
-        $request = Consumer::forge('resource', 'GET', 'http://api.twitter.com/1/users/lookup.json', array(
+        $request = new Resource('GET', 'http://api.twitter.com/1/users/lookup.json', array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token' => $token->access_token,
             'user_id' => $token->uid,
