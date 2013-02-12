@@ -3,6 +3,7 @@
 namespace OAuth\OAuth1;
 
 use \OAuth\OAuth1\Token;
+use \OAuth\OAuth1\Token\Request as RequestToken;
 use \OAuth\OAuth1\Request\Token as TokenRequest;
 use \OAuth\OAuth1\Request\Authorize as AuthorizeRequest;
 use \OAuth\OAuth1\Consumer;
@@ -40,6 +41,11 @@ abstract class Provider
      * @var  array  additional request parameters to be used for remote requests
      */
     protected $params = array();
+
+    /**
+     * @var  string  default scope (useful if a scope is required for user info)
+     */
+    protected $scope;
     
     /**
      * @var  string  scope separator, most use "," but some like Google are spaces
@@ -60,25 +66,33 @@ abstract class Provider
      */
     public function __construct(array $options = NULL)
     {
-        if (isset($options['signature']))
-        {
+        if (isset($options['signature'])) {
             // Set the signature method name or object
             $this->signature = $options['signature'];
         }
 
-        if ( ! is_object($this->signature))
-        {
+        if ( ! is_object($this->signature)) {
             // Convert the signature name into an object
             $class = str_replace('-', '', $this->signature);
             $class = "\OAuth\OAuth1\Signature\\$class";
             $this->signature = new $class;
         }
 
-        if ( ! $this->name)
-        {
-            // Attempt to guess the name from the class name
-            $this->name = strtolower(substr(get_class($this), strlen('Provider_')));
+        if (empty($options['id'])) {
+            throw new Exception('Required option not provided: id');
         }
+
+        if (empty($options['redirect_url'])) {
+            throw new Exception('Required option not provided: redirect_url');
+        }
+
+        $this->client_id = $options['id'];
+        
+        isset($options['callback']) and $this->callback = $options['callback'];
+        isset($options['secret']) and $this->client_secret = $options['secret'];
+        isset($options['scope']) and $this->scope = $options['scope'];
+
+        $this->redirect_uri = $options['redirect_url'];
     }
 
     /**
@@ -141,13 +155,13 @@ abstract class Provider
      * @return  Token_Request
      * @uses    Request_Token
      */
-    public function requestToken(Consumer $consumer, array $params = NULL)
+    public function requestToken($redirect_url = null, array $params = NULL)
     {
         // Create a new GET request for a request token with the required parameters
-        $request = Request::forge('token', 'GET', $this->url_request_token(), array(
-            'oauth_consumer_key' => $consumer->key,
-            'oauth_callback'     => $consumer->callback,
-            'scope'              => is_array($consumer->scope) ? implode($this->scope_seperator, $consumer->scope) : $consumer->scope,
+        $request = new TokenRequest('GET', $this->requestTokenUrl(), array(
+            'oauth_consumer_key' => $this->client_id,
+            'oauth_callback'     => $redirect_url ?: $this->redirect_url,
+            'scope'              => is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
         ));
 
         if ($params)
@@ -163,7 +177,7 @@ abstract class Provider
         $response = $request->execute();
 
         // Store this token somewhere useful
-        return Token::forge('request', array(
+        return new RequestToken(array(
             'access_token'  => $response->param('oauth_token'),
             'secret' => $response->param('oauth_token_secret'),
         ));
