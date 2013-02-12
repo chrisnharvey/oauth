@@ -1,11 +1,6 @@
 <?php
 
-include 'Request.php';
-include 'Response.php';
-include 'Signature.php';
-include 'Token.php';
-include 'Token/Request.php';
-include 'Format.php';
+namespace OAuth\OAuth1;
 
 class OAuth {
 
