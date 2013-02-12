@@ -18,6 +18,15 @@ authenticates with an OAuth 2 provider, which in this example would be Twitter i
 - Soundcloud
 - Windows Live
 - YouTube
+- Dropbox
+- Flickr
+- LinkedIn
+- Tumblr
+- Mailchimp
+- Mailru
+- Vkontakte
+- Yandex
+- Appnet
 
 ## Usage Example
 
