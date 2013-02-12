@@ -1,6 +1,8 @@
 <?php
 
-class OAuth_Token_Request extends OAuth_Token {
+namespace OAuth\OAuth1\Token;
+
+class Request extends \OAuth\OAuth1\Token {
 
 	protected $name = 'request';
 
