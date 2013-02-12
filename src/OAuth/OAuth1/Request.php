@@ -141,8 +141,13 @@ class Request
 	 */
 	public function nonce()
 	{
-		get_instance()->load->helper('string');
-		return random_string('alnum', 40);
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		
+	    $nonce = '';
+	    for ($i = 0; $i < 40; $i++) {
+	        $nonce .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    return $nonce;
 	}
 
 	/**
