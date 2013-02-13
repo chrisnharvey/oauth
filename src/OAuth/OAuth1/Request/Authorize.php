@@ -1,6 +1,8 @@
 <?php
 
-class OAuth_Request_Authorize extends OAuth_Request {
+namespace OAuth\OAuth1\Request;
+
+class Authorize extends \OAuth\OAuth1\Request {
 
 	protected $name = 'request';
 
