@@ -1,6 +1,8 @@
 <?php
 
-class OAuth_Consumer
+namespace OAuth\OAuth1;
+
+class Consumer
 {
 	/**
 	 * @var  string  consumer key
@@ -23,6 +25,11 @@ class OAuth_Consumer
 	protected $scope;
 
 	/**
+     * @var  string  scope separator, most use "," but some like Google are spaces
+     */
+    public $scope_seperator = ',';
+
+	/**
 	 * Sets the consumer key and secret.
 	 *
 	 * @param   array  consumer options, key and secret are required
@@ -30,30 +37,21 @@ class OAuth_Consumer
 	 */
 	public function __construct(array $options = NULL)
 	{
-		if (empty($options['key']))
-		{
-			throw new Exception('Required option not provided: key');
-		}
+		if (empty($options['id'])) {
+            throw new Exception('Required option not provided: id');
+        }
 
-/* TODO Erm? YouTube doesnt need this 
-		if ( ! isset($options['secret']))
-		{
-			throw new Exception('Required option not provided: secret');
-		}
-*/
-		$this->key = $options['key'];
+        if (empty($options['redirect_url'])) {
+            throw new Exception('Required option not provided: redirect_url');
+        }
 
-		$this->secret = $options['secret'];
+        $this->client_id = $options['id'];
+        
+        isset($options['callback']) and $this->callback = $options['callback'];
+        isset($options['secret']) and $this->secret = $options['secret'];
+        isset($options['scope']) and $this->scope = $options['scope'];
 
-		if (isset($options['callback']))
-		{
-			$this->callback = $options['callback'];
-		}
-		
-		if (isset($options['scope']))
-		{
-			$this->scope = $options['scope'];
-		}
+        $this->redirect_uri = $options['redirect_url'];
 	}
 
 	/**
@@ -81,6 +79,13 @@ class OAuth_Consumer
 		$this->callback = $callback;
 
 		return $this;
+	}
+
+	public function scope($scope)
+	{
+        $this->scope = is_array($scope) ? implode($this->scope_seperator, $scope) : $this->scope;
+	
+        return $this;
 	}
 
 } // End Consumer

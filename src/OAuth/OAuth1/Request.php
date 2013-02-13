@@ -389,7 +389,7 @@ class Request
 	 * @return  $this
 	 * @uses    Signature::sign
 	 */
-	public function sign(OAuth_Signature $signature, OAuth_Consumer $consumer, OAuth_Token $token = NULL)
+	public function sign(Signature $signature, Consumer $consumer, OAuth_Token $token = NULL)
 	{
 		// Create a new signature class from the method
 		$this->param('oauth_signature_method', $signature->name);

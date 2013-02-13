@@ -78,21 +78,7 @@ abstract class Provider
             $this->signature = new $class;
         }
 
-        if (empty($options['id'])) {
-            throw new Exception('Required option not provided: id');
-        }
-
-        if (empty($options['redirect_url'])) {
-            throw new Exception('Required option not provided: redirect_url');
-        }
-
-        $this->client_id = $options['id'];
-        
-        isset($options['callback']) and $this->callback = $options['callback'];
-        isset($options['secret']) and $this->client_secret = $options['secret'];
-        isset($options['scope']) and $this->scope = $options['scope'];
-
-        $this->redirect_uri = $options['redirect_url'];
+        $this->consumer = new Consumer($options);
     }
 
     /**
@@ -157,11 +143,14 @@ abstract class Provider
      */
     public function requestToken($redirect_url = null, array $params = NULL)
     {
+        $redirect_url = $redirect_url ?: $this->redirect_url;
+        $scope = is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope;
+
         // Create a new GET request for a request token with the required parameters
         $request = new TokenRequest('GET', $this->requestTokenUrl(), array(
             'oauth_consumer_key' => $this->client_id,
-            'oauth_callback'     => $redirect_url ?: $this->redirect_url,
-            'scope'              => is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
+            'oauth_callback'     => $redirect_url,
+            'scope'              => $scope
         ));
 
         if ($params)
@@ -171,7 +160,10 @@ abstract class Provider
         }
 
         // Sign the request using only the consumer, no token is available yet
-        $request->sign($this->signature, $consumer);
+        $request->sign($this->signature, $this->consumer
+            ->scope($scope)
+            ->callback($redirect_url)
+        );
 
         // Create a response from the request
         $response = $request->execute();
