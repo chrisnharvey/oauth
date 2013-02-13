@@ -1,6 +1,9 @@
 <?php
 
-class OAuth_Response {
+namespace OAuth\OAuth1;
+
+class Response
+{
 
 	/**
 	 * @var   array   response parameters

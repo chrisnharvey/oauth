@@ -2,6 +2,8 @@
 
 namespace OAuth\OAuth1\Request;
 
+use \OAuth\OAuth1\Response;
+
 class Token extends \OAuth\OAuth1\Request
 {
 
@@ -21,7 +23,7 @@ class Token extends \OAuth\OAuth1\Request
 
 	public function execute(array $options = NULL)
 	{
-		return new OAuth_Response(parent::execute($options));
+		return new Response(parent::execute($options));
 	}
 
 } // End Request_Token
