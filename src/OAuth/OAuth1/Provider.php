@@ -4,8 +4,10 @@ namespace OAuth\OAuth1;
 
 use \OAuth\OAuth1\Token;
 use \OAuth\OAuth1\Token\Request as RequestToken;
+use \OAuth\OAuth1\Token\Access as AccessToken;
 use \OAuth\OAuth1\Request\Token as TokenRequest;
 use \OAuth\OAuth1\Request\Authorize as AuthorizeRequest;
+use \OAuth\OAuth1\Request\Access as AccessRequest;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Signature;
 
@@ -143,12 +145,12 @@ abstract class Provider
      */
     public function requestToken($redirect_url = null, array $params = NULL)
     {
-        $redirect_url = $redirect_url ?: $this->redirect_url;
-        $scope = is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope;
+        $redirect_url = $redirect_url ?: $this->consumer->redirect_url;
+        $scope = is_array($this->consumer->scope) ? implode($this->consumer->scope_seperator, $this->consumer->scope) : $this->consumer->scope;
 
         // Create a new GET request for a request token with the required parameters
         $request = new TokenRequest('GET', $this->requestTokenUrl(), array(
-            'oauth_consumer_key' => $this->client_id,
+            'oauth_consumer_key' => $this->consumer->client_id,
             'oauth_callback'     => $redirect_url,
             'scope'              => $scope
         ));
@@ -175,16 +177,15 @@ abstract class Provider
         ));
     }
 
-    public function callback($callbackUrl = null)
+    public function process(callable $process = null, callable $callback = null)
     {
-        $callbackUrl = $callbackUrl or $this->redirect_url;
         if ( ! isset($_GET['oauth_token'])) {
             // Get a request token for the consumer
             $data['token'] = $this->requestToken($callbackUrl);
 
             // Get the URL to the twitter login page
-            $data['url'] = $this->authorize($token, array(
-                'oauth_callback' => $callback,
+            $data['url'] = $this->authorize($data['token'], array(
+                'oauth_callback' => $callbackUrl,
             ));
 
             return $data;
@@ -202,7 +203,7 @@ abstract class Provider
      * @param   array                additional request parameters
      * @return  string
      */
-    public function authorize(TokenRequest $token, array $params = NULL)
+    public function authorize(RequestToken $token, array $params = NULL)
     {
         // Create a new GET request for a request token with the required parameters
         $request = new AuthorizeRequest('GET', $this->authorizeUrl(), array(
@@ -227,10 +228,10 @@ abstract class Provider
      * @param   array                additional request parameters
      * @return  Token_Access
      */
-    public function access_token(OAuth_Consumer $consumer, OAuth_Token_Request $token, array $params = NULL)
+    public function accessToken(Consumer $consumer, RequestToken $token, array $params = null)
     {
         // Create a new GET request for a request token with the required parameters
-        $request = OAuth_Request::forge('access', 'GET', $this->url_access_token(), array(
+        $request = new AccessRequest('GET', $this->urlAccessToken(), array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token'        => $token->access_token,
             'oauth_verifier'     => $token->verifier,
@@ -249,7 +250,7 @@ abstract class Provider
         $response = $request->execute();
         
         // Store this token somewhere useful
-        return OAuth_Token::forge('access', array(
+        return new AccessToken(array(
             'access_token'  => $response->param('oauth_token'),
             'secret' => $response->param('oauth_token_secret'),
             'uid' => $response->param($this->uid_key) ? $response->param($this->uid_key) : get_instance()->input->get_post($this->uid_key),
