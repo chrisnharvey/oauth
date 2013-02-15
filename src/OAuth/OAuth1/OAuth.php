@@ -9,18 +9,6 @@ class OAuth {
 	 */
 	public static $version = '1.0';
 
-	public static function provider($name, array $options = NULL)
-	{
-		$name = ucfirst(strtolower($name));
-
-		include_once 'Provider.php';
-		include_once 'Provider/'.$name.'.php';
-
-		$class = 'OAuth_Provider_'.$name;
-
-		return new $class($options);
-	}
-
 	public static function consumer(array $options = NULL)
 	{
 		include_once 'Consumer.php';
