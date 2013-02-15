@@ -47,11 +47,9 @@ class Consumer
 
         $this->client_id = $options['id'];
         
-        isset($options['callback']) and $this->callback = $options['callback'];
+        isset($options['redirect_url']) and $this->redirect_url = $options['redirect_url'];
         isset($options['secret']) and $this->secret = $options['secret'];
         isset($options['scope']) and $this->scope = $options['scope'];
-
-        $this->redirect_uri = $options['redirect_url'];
 	}
 
 	/**
