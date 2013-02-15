@@ -1,25 +1,27 @@
 <?php
 
-class OAuth_Provider_Flickr extends OAuth_Provider
+namespace OAuth\Provider;
+
+class Flickr extends \OAuth\OAuth1\Provider
 {
     public $name = 'flickr';
 
-    public function url_request_token()
+    public function requestTokenUrl()
     {
         return 'http://www.flickr.com/services/oauth/request_token';
     }
 
-    public function url_authorize()
+    public function authorizeUrl()
     {
         return 'http://www.flickr.com/services/oauth/authorize';
     }
 
-    public function url_access_token()
+    public function accessTokenUrl()
     {
         return 'http://www.flickr.com/services/oauth/access_token';
     }
 
-    public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
     {
         // Create a new GET request with the required parameters
         $request = OAuth_Request::forge('resource', 'GET', 'http://api.flickr.com/services/rest', array(

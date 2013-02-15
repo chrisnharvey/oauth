@@ -10,26 +10,28 @@
  *
  */
 
-class OAuth_Provider_Linkedin extends OAuth_Provider
+namespace OAuth\Provider;
+
+class Linkedin extends \OAuth\OAuth1\Provider
 {
     public $name = 'linkedin';
 
-    public function url_request_token()
+    public function requestTokenUrl()
     {
         return 'https://api.linkedin.com/uas/oauth/requestToken';
     }
 
-    public function url_authorize()
+    public function authorizeUrl()
     {
         return 'https://api.linkedin.com/uas/oauth/authorize';
     }
 
-    public function url_access_token()
+    public function accessTokenUrl()
     {
         return 'https://api.linkedin.com/uas/oauth/accessToken';
     }
 
-    public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
     {
         // Create a new GET request with the required parameters
         $url = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,member-url-resources,picture-url,location,public-profile-url)';

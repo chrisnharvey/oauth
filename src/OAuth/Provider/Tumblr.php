@@ -13,26 +13,28 @@
  * @author     Fuel Development Team
  */
 
-class OAuth_Provider_Tumblr extends OAuth_Provider
+namespace OAuth\Provider;
+
+class Tumblr extends \OAuth\OAuth1\Provider
 {
     public $name = 'tumblr';
 
-    public function url_request_token()
+    public function requestTokenUrl()
     {
         return 'http://www.tumblr.com/oauth/request_token';
     }
 
-    public function url_authorize()
+    public function authorizeUrl()
     {
         return 'http://www.tumblr.com/oauth/authorize';
     }
 
-    public function url_access_token()
+    public function accessTokenUrl()
     {
         return 'http://www.tumblr.com/oauth/access_token';
     }
 
-    public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
     {
         // Create a new GET request with the required parameters
         $request = OAuth_Request::forge('resource', 'GET', 'http://api.tumblr.com/v2/user/info', array(

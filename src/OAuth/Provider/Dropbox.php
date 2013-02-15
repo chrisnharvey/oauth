@@ -1,25 +1,27 @@
 <?php
 
-class OAuth_Provider_Dropbox extends OAuth_Provider
+namespace OAuth\Provider;
+
+class Dropbox extends \OAuth\OAuth1\Provider
 {
     public $name = 'dropbox';
 
-    public function url_request_token()
+    public function requestTokenUrl()
     {
         return 'https://api.dropbox.com/1/oauth/request_token';
     }
 
-    public function url_authorize()
+    public function authorizeUrl()
     {
         return 'http://www.dropbox.com/1/oauth/authorize';
     }
 
-    public function url_access_token()
+    public function accessTokenUrl()
     {
         return 'https://api.dropbox.com/1/oauth/access_token';
     }
 
-    public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
     {
         // Create a new GET request with the required parameters
         $request = OAuth_Request::forge('resource', 'GET', 'https://api.dropbox.com/1/account/info', array(
