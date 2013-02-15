@@ -185,7 +185,7 @@ class OAuth {
 	 *
 	 * @param   string  URL to parse
 	 * @return  array   (clean_url, params)
-	 * @uses    OAuth::parse_params
+	 * @uses    OAuth::parseParams
 	 */
 	public static function parse_url($url)
 	{
@@ -195,7 +195,7 @@ class OAuth {
 			list($url) = explode('?', $url, 2);
 
 			// Parse the query string as request parameters
-			$params = OAuth::parse_params($query);
+			$params = OAuth::parseParams($query);
 		}
 		else
 		{
@@ -211,15 +211,15 @@ class OAuth {
 	 * converted into indexed arrays.
 	 *
 	 *     // Parsed: array('a' => '1', 'b' => '2', 'c' => '3')
-	 *     $params = OAuth::parse_params('a=1,b=2,c=3');
+	 *     $params = OAuth::parseParams('a=1,b=2,c=3');
 	 *
 	 *     // Parsed: array('a' => array('1', '2'), 'c' => '3')
-	 *     $params = OAuth::parse_params('a=1,a=2,c=3');
+	 *     $params = OAuth::parseParams('a=1,a=2,c=3');
 	 *
 	 * @param   string  parameter string
 	 * @return  array
 	 */
-	public static function parse_params($params)
+	public static function parseParams($params)
 	{
 		// Split the parameters by &
 		$params = explode('&', trim($params));
