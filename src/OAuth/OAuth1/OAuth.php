@@ -179,7 +179,7 @@ class OAuth {
 	 * the base string and added to the request parameters.
 	 *
 	 *     // parsed parameters: array('oauth_key' => 'abcdef123456789')
-	 *     list($url, $params) = OAuth::parse_url('http://example.com/oauth/access?oauth_key=abcdef123456789');
+	 *     list($url, $params) = OAuth::parseUrl('http://example.com/oauth/access?oauth_key=abcdef123456789');
 	 *
 	 * [!!] This implements [OAuth Spec 9.1.1](http://oauth.net/core/1.0/#rfc.section.9.1.1).
 	 *
@@ -187,7 +187,7 @@ class OAuth {
 	 * @return  array   (clean_url, params)
 	 * @uses    OAuth::parseParams
 	 */
-	public static function parse_url($url)
+	public static function parseUrl($url)
 	{
 		if ($query = parse_url($url, PHP_URL_QUERY))
 		{

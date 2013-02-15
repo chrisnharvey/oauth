@@ -50,7 +50,7 @@ class Request
 	 * @param  string  request method
 	 * @param  string  request URL
 	 * @param  array   request parameters
-	 * @uses   OAuth::parse_url
+	 * @uses   OAuth::parseUrl
 	 */
 	public function __construct($method, $url, array $params = NULL)
 	{
@@ -62,7 +62,7 @@ class Request
 
 		// Separate the URL and query string, which will be used as additional
 		// default parameters
-		list ($url, $default) = OAuth::parse_url($url);
+		list ($url, $default) = OAuth::parseUrl($url);
 
 		// Set the request URL
 		$this->url = $url;
