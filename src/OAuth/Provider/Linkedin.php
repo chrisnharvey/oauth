@@ -37,11 +37,11 @@ class Linkedin extends \OAuth\OAuth1\Provider
         $url = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,member-url-resources,picture-url,location,public-profile-url)';
         $request = OAuth_Request::forge('resource', 'GET', $url, array(
             'oauth_consumer_key' => $consumer->key,
-            'oauth_token' => $token->access_token,
+            'oauth_token' => $this->token->access_token,
         ));
 
         // Sign the request using the consumer and token
-        $request->sign($this->signature, $consumer, $token);
+        $request->sign($this->signature, $consumer, $this->token);
 
         $user = OAuth_Format::factory($request->execute(), 'xml')->to_array();
 

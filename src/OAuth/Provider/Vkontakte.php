@@ -31,9 +31,9 @@ class Vkontakte extends \OAuth\OAuth2\Provider
     {
         $scope = array('nickname', 'screen_name','photo_big');
         $url = 'https://api.vk.com/method/users.get?'.http_build_query(array(
-            'uids' => $token->uid,
+            'uids' => $this->token->uid,
             'fields' => implode(",",$scope),
-            'access_token' => $token->access_token,
+            'access_token' => $this->token->access_token,
         ));
 
         $user = json_decode(file_get_contents($url))->response;

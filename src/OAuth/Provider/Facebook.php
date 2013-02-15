@@ -28,10 +28,10 @@ class Facebook extends \OAuth\OAuth2\Provider
         return 'https://graph.facebook.com/oauth/access_token';
     }
 
-    public function getUserInfo(\OAuth\OAuth2\Token\Access $token)
+    public function getUserInfo(\OAuth\OAuth2\Token\Access $this->token)
     {
         $url = 'https://graph.facebook.com/me?'.http_build_query(array(
-            'access_token' => $token->access_token,
+            'access_token' => $this->token->access_token,
         ));
 
         $user = json_decode(file_get_contents($url));
@@ -46,7 +46,7 @@ class Facebook extends \OAuth\OAuth2\Provider
             'email' => isset($user->email) ? $user->email : null,
             'location' => isset($user->hometown->name) ? $user->hometown->name : null,
             'description' => isset($user->bio) ? $user->bio : null,
-            'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token='.$token->access_token,
+            'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token='.$this->token->access_token,
             'urls' => array(
               'Facebook' => $user->link,
             ),

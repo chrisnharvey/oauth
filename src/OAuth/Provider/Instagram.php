@@ -38,7 +38,7 @@ class Instagram extends \OAuth\OAuth2\Provider
 
     public function getUserInfo()
     {
-        $user = $token->user;
+        $user = $this->token->user;
 
         return array(
             'uid' => $user->id,

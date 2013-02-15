@@ -42,8 +42,8 @@ class Mailru extends \OAuth\OAuth2\Provider
         $request_params = array(
             'app_id' => $this->client_id,
             'method' => 'users.getInfo',
-            'uids' => $token->uid,
-            'access_token' => $token->access_token,
+            'uids' => $this->token->uid,
+            'access_token' => $this->token->access_token,
             'secure' => 1
         );
 

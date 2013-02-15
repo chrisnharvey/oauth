@@ -31,7 +31,7 @@ class Yandex extends \OAuth\OAuth2\Provider
         $opts = array(
             'http' => array(
                 'method' => 'GET',
-                'header' => 'Authorization: OAuth '.$token->access_token
+                'header' => 'Authorization: OAuth '.$this->token->access_token
             )
         );
         $_default_opts = stream_context_get_params(stream_context_get_default());

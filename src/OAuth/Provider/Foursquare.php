@@ -31,7 +31,7 @@ class Foursquare extends \OAuth\OAuth2\Provider
     public function getUserInfo()
     {
         $url = 'https://api.foursquare.com/v2/users/self?'.http_build_query(array(
-            'oauth_token' => $token->access_token,
+            'oauth_token' => $this->token->access_token,
         ));
 
         $response = json_decode(file_get_contents($url));

@@ -45,7 +45,7 @@ class Windowslive extends \OAuth\OAuth2\Provider
     {
         // define the get user information token
         $url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(
-            'access_token' => $token->access_token,
+            'access_token' => $this->token->access_token,
         ));
 
         // perform network request

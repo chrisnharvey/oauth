@@ -29,7 +29,7 @@ class Github extends \OAuth\OAuth2\Provider
     public function getUserInfo()
     {
         $url = 'https://api.github.com/user?'.http_build_query(array(
-            'access_token' => $token->access_token,
+            'access_token' => $this->token->access_token,
         ));
 
         $user = json_decode(file_get_contents($url));

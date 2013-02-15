@@ -26,14 +26,14 @@ class Flickr extends \OAuth\OAuth1\Provider
         // Create a new GET request with the required parameters
         $request = OAuth_Request::forge('resource', 'GET', 'http://api.flickr.com/services/rest', array(
             'oauth_consumer_key' => $consumer->key,
-            'oauth_token' => $token->access_token,
+            'oauth_token' => $this->token->access_token,
             'nojsoncallback' => 1,
             'format' => 'json',
             'method' => 'flickr.test.login',
         ));
 
         // Sign the request using the consumer and token
-        $request->sign($this->signature, $consumer, $token);
+        $request->sign($this->signature, $consumer, $this->token);
 
         $response = json_decode($request->execute(), true);
 

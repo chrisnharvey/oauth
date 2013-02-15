@@ -35,7 +35,7 @@ class Mailchimp extends \OAuth\OAuth2\Provider
     {
         // Create a response from the request
         return array(
-            'uid' => $token->access_token,
+            'uid' => $this->token->access_token,
         );
     }
 }
