@@ -245,11 +245,11 @@ abstract class Provider
      * @param   array                additional request parameters
      * @return  Token_Access
      */
-    public function accessToken(Consumer $consumer, RequestToken $token, array $params = null)
+    public function accessToken(RequestToken $token, array $params = null)
     {
         // Create a new GET request for a request token with the required parameters
-        $request = new AccessRequest('GET', $this->urlAccessToken(), array(
-            'oauth_consumer_key' => $consumer->key,
+        $request = new AccessRequest('GET', $this->accessTokenUrl(), array(
+            'oauth_consumer_key' => $this->consumer->client_id,
             'oauth_token'        => $token->access_token,
             'oauth_verifier'     => $token->verifier,
         ));
