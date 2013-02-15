@@ -9,13 +9,6 @@ class OAuth {
 	 */
 	public static $version = '1.0';
 
-	public static function consumer(array $options = NULL)
-	{
-		include_once 'Consumer.php';
-
-		return new OAuth_Consumer($options);
-	}
-
 	/**
 	 * Returns the output of a remote URL. Any [curl option](http://php.net/curl_setopt)
 	 * may be used.
