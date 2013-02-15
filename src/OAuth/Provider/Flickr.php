@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth1\Request\Resource;
+
 class Flickr extends \OAuth\OAuth1\Provider
 {
     public $name = 'flickr';
@@ -24,7 +26,7 @@ class Flickr extends \OAuth\OAuth1\Provider
     public function getUserInfo()
     {
         // Create a new GET request with the required parameters
-        $request = OAuth_Request::forge('resource', 'GET', 'http://api.flickr.com/services/rest', array(
+        $request = new Resource('GET', 'http://api.flickr.com/services/rest', array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token' => $this->token->access_token,
             'nojsoncallback' => 1,

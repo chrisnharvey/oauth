@@ -15,6 +15,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth1\Request\Resource;
+
 class Tumblr extends \OAuth\OAuth1\Provider
 {
     public $name = 'tumblr';
@@ -37,7 +39,7 @@ class Tumblr extends \OAuth\OAuth1\Provider
     public function getUserInfo()
     {
         // Create a new GET request with the required parameters
-        $request = OAuth_Request::forge('resource', 'GET', 'http://api.tumblr.com/v2/user/info', array(
+        $request = new Resource('GET', 'http://api.tumblr.com/v2/user/info', array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token' => $this->token->access_token,
         ));

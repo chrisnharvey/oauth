@@ -12,6 +12,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth1\Request\Resource;
+
 class Linkedin extends \OAuth\OAuth1\Provider
 {
     public $name = 'linkedin';
@@ -35,7 +37,7 @@ class Linkedin extends \OAuth\OAuth1\Provider
     {
         // Create a new GET request with the required parameters
         $url = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,member-url-resources,picture-url,location,public-profile-url)';
-        $request = OAuth_Request::forge('resource', 'GET', $url, array(
+        $request = new Resource('GET', $url, array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token' => $this->token->access_token,
         ));

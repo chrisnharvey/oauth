@@ -2,6 +2,8 @@
 
 namespace OAuth\Provider;
 
+use \OAuth\OAuth1\Request\Resource;
+
 class Dropbox extends \OAuth\OAuth1\Provider
 {
     public $name = 'dropbox';
@@ -24,7 +26,7 @@ class Dropbox extends \OAuth\OAuth1\Provider
     public function getUserInfo()
     {
         // Create a new GET request with the required parameters
-        $request = OAuth_Request::forge('resource', 'GET', 'https://api.dropbox.com/1/account/info', array(
+        $request = new Resource('GET', 'https://api.dropbox.com/1/account/info', array(
             'oauth_consumer_key' => $consumer->key,
             'oauth_token' => $this->token->access_token,
         ));
