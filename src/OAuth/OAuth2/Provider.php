@@ -117,6 +117,20 @@ abstract class Provider
      */
     abstract public function getUserInfo(Access $token);
 
+    public function process(callable $process)
+    {
+        if ( ! $_GET['code']) {
+            // By sending no options it'll come back here
+            $params = $this->authorize();
+
+            $process("{$this->authorizeUrl()}?".http_build_query($params));
+        } else {
+            $this->token = $provider->access($_GET['code']);
+
+            return $this
+        }
+    }
+
     /*
     * Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
     */  
@@ -135,7 +149,7 @@ abstract class Provider
         
         $params = array_merge($params, $this->params);
         
-        header("Location: {$this->authorizeUrl()}?".http_build_query($params));
+        return $params;
     }
 
     /*
