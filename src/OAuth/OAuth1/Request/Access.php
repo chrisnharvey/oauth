@@ -1,6 +1,10 @@
 <?php
 
-class OAuth_Request_Access extends OAuth_Request {
+namespace OAuth\OAuth1\Request;
+
+use OAuth\OAuth1\Response;
+
+class Access extends \OAuth\OAuth1\Request {
 
 	protected $name = 'access';
 
@@ -17,7 +21,7 @@ class OAuth_Request_Access extends OAuth_Request {
 
 	public function execute(array $options = NULL)
 	{
-		return new OAuth_Response(parent::execute($options));
+		return new Response(parent::execute($options));
 	}
 
 } // End Request_Access
