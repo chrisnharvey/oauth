@@ -1,8 +1,8 @@
 [![Build Status](https://secure.travis-ci.org/chrisnharvey/oauth.png)](http://travis-ci.org/chrisnharvey/oauth)
 
-# OAuth 2.0 Composer Package
+# OAuth Composer Package
 
-Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
+Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 1.0 and OAuth 2.0 providers. This is only to authenticate onto OAuth providers and not to build an OAuth service.
 
 ## Examples
 
