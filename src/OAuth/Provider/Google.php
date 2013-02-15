@@ -40,13 +40,13 @@ class Google extends \OAuth\OAuth2\Provider
     {
         // Now make sure we have the default scope to get user data
         empty($options['scope']) and $options['scope'] = array(
-            'https://www.googleapis.com/auth/userinfo.profile', 
+            'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'
         );
-    
+
         // Array it if its string
         $options['scope'] = (array) $options['scope'];
-        
+
         parent::__construct($options);
     }
 
@@ -55,11 +55,10 @@ class Google extends \OAuth\OAuth2\Provider
     *
     * @param    string  The access code
     * @return   object  Success or failure along with the response details
-    */  
+    */
     public function access($code, $options = array())
     {
-        if ($code === null)
-        {
+        if ($code === null) {
             throw new OAuth2_Exception(array('message' => 'Expected Authorization Code from '.ucfirst($this->name).' is missing'));
         }
 
@@ -71,8 +70,9 @@ class Google extends \OAuth\OAuth2\Provider
         $url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&'.http_build_query(array(
             'access_token' => $token->access_token,
         ));
-        
+
         $user = json_decode(file_get_contents($url), true);
+
         return array(
             'uid' => $user['id'],
             'nickname' => url_title($user['name'], '_', true),

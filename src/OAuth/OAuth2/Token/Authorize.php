@@ -26,17 +26,16 @@ class Authorize
      * Sets the token, expiry, etc values.
      *
      * @param   array   token options
-     * @return  void
+     * @return void
      */
     public function __construct(array $options)
     {
         if ( ! isset($options['code'])) {
             throw new Exception('Required option not passed: code');
-        }
-        elseif ( ! isset($options['redirect_uri'])) {
+        } elseif ( ! isset($options['redirect_uri'])) {
             throw new Exception('Required option not passed: redirect_uri');
         }
-        
+
         $this->code = $options['code'];
         $this->redirect_uri = $options['redirect_uri'];
     }
@@ -44,7 +43,7 @@ class Authorize
     /**
      * Returns the token key.
      *
-     * @return  string
+     * @return string
      */
     public function __toString()
     {

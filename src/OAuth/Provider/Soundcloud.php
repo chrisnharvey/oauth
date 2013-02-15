@@ -15,7 +15,7 @@ use \OAuth\OAuth2\Token\Access;
  */
 
 class Soundcloud extends \OAuth\OAuth2\Provider
-{   
+{
     /**
      * @var  string  the method to use when requesting tokens
      */

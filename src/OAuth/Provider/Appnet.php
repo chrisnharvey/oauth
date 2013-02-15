@@ -11,14 +11,14 @@ use \OAuth\OAuth2\Token\Access;
  * @category   Provider
  * @author     Brennan Novak
  */
- 
-class Appnet extends \OAuth\OAuth2\Provider {
 
-    /** 
+class Appnet extends \OAuth\OAuth2\Provider
+{
+    /**
      * @array scope items for App.net
-     */ 
+     */
     protected $scope = array('stream','email','write_post','follow','messages','export');
-    
+
     public $name = 'appnet';
 
     /**
@@ -41,7 +41,7 @@ class Appnet extends \OAuth\OAuth2\Provider {
     }
 
     public function getUserInfo(Access $token)
-    {   
+    {
         $url = 'https://alpha-api.app.net/stream/0/users/me?'.http_build_query(array(
             'access_token' => $token->access_token,
         ));

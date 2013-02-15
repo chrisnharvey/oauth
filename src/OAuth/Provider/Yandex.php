@@ -15,7 +15,7 @@ use \OAuth\OAuth2\Token\Access;
 class Yandex extends \OAuth\OAuth2\Provider
 {
     public $method = 'POST';
-    
+
     public function authorizeUrl()
     {
         return 'https://oauth.yandex.ru/authorize';
@@ -35,7 +35,7 @@ class Yandex extends \OAuth\OAuth2\Provider
             )
         );
         $_default_opts = stream_context_get_params(stream_context_get_default());
-        
+
         $opts = array_merge_recursive($_default_opts['options'], $opts);
         $context = stream_context_create($opts);
         $url = 'http://api-yaru.yandex.ru/me/?format=json';
@@ -43,7 +43,7 @@ class Yandex extends \OAuth\OAuth2\Provider
         $user = json_decode(file_get_contents($url,false,$context));
 
         preg_match("/\d+$/",$user->id,$uid);
-        
+
         return array(
             'uid' => $uid[0],
             'nickname' => isset($user->name) ? $user->name : null,
@@ -56,7 +56,7 @@ class Yandex extends \OAuth\OAuth2\Provider
             'image' => $user->links->userpic,
         );
     }
-    
+
     public function access($code, $options = array())
     {
         $params = array(
@@ -76,7 +76,7 @@ class Yandex extends \OAuth\OAuth2\Provider
             break;
         }
 
-        $response = null;   
+        $response = null;
         $url = $this->url_access_token();
 
         $curl = curl_init($url);

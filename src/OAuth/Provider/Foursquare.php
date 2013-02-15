@@ -15,7 +15,7 @@ use \OAuth\OAuth2\Token\Access;
  */
 
 class Foursquare extends \OAuth\OAuth2\Provider
-{  
+{
     public $method = 'POST';
 
     public function authorizeUrl()

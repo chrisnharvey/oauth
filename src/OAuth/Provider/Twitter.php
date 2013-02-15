@@ -10,7 +10,7 @@ class Twitter extends \OAuth\OAuth1\Provider
 {
 
     public $name = 'twitter';
-    
+
     public $uid_key = 'user_id';
 
     public function requestTokenUrl()
@@ -27,13 +27,13 @@ class Twitter extends \OAuth\OAuth1\Provider
     {
         return 'https://api.twitter.com/oauth/access_token';
     }
-    
+
     public function getUserInfo(Consumer $consumer, Token $token)
     {
-        if ( ! $token instanceof Access) {
+        if (! $token instanceof Access) {
             throw new Exception('Token must be an instance of Access');
         }
-        
+
         // Create a new GET request with the required parameters
         $request = new Resource('GET', 'http://api.twitter.com/1/users/lookup.json', array(
             'oauth_consumer_key' => $consumer->key,
@@ -45,7 +45,7 @@ class Twitter extends \OAuth\OAuth1\Provider
         $request->sign($this->signature, $consumer, $token);
 
         $user = current(json_decode($request->execute()));
-        
+
         // Create a response from the request
         return array(
             'uid' => $token->uid,

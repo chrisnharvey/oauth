@@ -8,8 +8,8 @@ namespace OAuth\OAuth2;
  * @author Originally written by Naitik Shah <naitik@facebook.com>.
  * @author Update to draft v10 by Edison Wong <hswong3i@pantarei-design.com>.
  */
-class Exception extends \Exception {
-
+class Exception extends \Exception
+{
     /**
      * The result from the API server that represents the exception information.
      */
@@ -30,18 +30,16 @@ class Exception extends \Exception {
         if (isset($result['error'])) {
             // OAuth 2.0 Draft 10 style
             $message = $result['error'];
-        }
-        elseif (isset($result['message'])) {
+        } elseif (isset($result['message'])) {
             // cURL style
             $message = $result['message'];
-        }
-        else {
+        } else {
             $message = 'Unknown Error.';
         }
 
         parent::__construct($message, $code);
     }
-    
+
     /**
     * Returns the associated type for the error. This will default to
     * 'Exception' when a type is not available.
@@ -57,13 +55,14 @@ class Exception extends \Exception {
                 return $message;
             }
         }
+
         return 'Exception';
     }
 
     /**
      * To make debugging easier.
      *
-     * @return  string  The string representation of the error.
+     * @return string The string representation of the error.
      */
     public function __toString()
     {
@@ -71,6 +70,7 @@ class Exception extends \Exception {
         if ($this->code != 0) {
             $str .= $this->code . ': ';
         }
+
         return $str . $this->message;
     }
 

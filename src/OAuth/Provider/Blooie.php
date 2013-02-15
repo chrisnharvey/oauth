@@ -4,17 +4,15 @@ namespace OAuth\Provider;
 
 use \OAuth\OAuth2\Token\Access;
 
-
 class Blooie extends \OAuth\OAuth2\Provider
-{  
+{
     public $scope = array('user.profile', 'user.picture');
 
     public $method = 'POST';
 
     public function authorizeUrl()
     {
-        switch (ENVIRONMENT)
-        {
+        switch (ENVIRONMENT) {
             case PYRO_DEVELOPMENT:
                 return 'http://local.bloo.ie/oauth';
 
@@ -27,13 +25,12 @@ class Blooie extends \OAuth\OAuth2\Provider
             default:
                 exit('What the crap?!');
         }
-        
+
     }
 
     public function accessTokenUrl()
     {
-        switch (ENVIRONMENT)
-        {
+        switch (ENVIRONMENT) {
             case PYRO_DEVELOPMENT:
                 return 'http://local.bloo.ie/oauth/access_token';
 

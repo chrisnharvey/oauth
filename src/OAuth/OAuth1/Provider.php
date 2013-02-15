@@ -48,7 +48,7 @@ abstract class Provider
      * @var  string  default scope (useful if a scope is required for user info)
      */
     protected $scope;
-    
+
     /**
      * @var  string  scope separator, most use "," but some like Google are spaces
      */
@@ -66,7 +66,7 @@ abstract class Provider
      * mixed     | signature     | Signature method name or object                | provider default
      *
      * @param   array   provider options
-     * @return  void
+     * @return void
      */
     public function __construct(array $options = NULL)
     {
@@ -92,7 +92,7 @@ abstract class Provider
      *     $signature = $provider->signature;
      *
      * @param   string  variable name
-     * @return  mixed
+     * @return mixed
      */
     public function __get($key)
     {
@@ -104,7 +104,7 @@ abstract class Provider
      *
      *     $url = $provider->url_request_token();
      *
-     * @return  string
+     * @return string
      */
     abstract public function requestTokenUrl();
 
@@ -113,7 +113,7 @@ abstract class Provider
      *
      *     $url = $provider->url_authorize();
      *
-     * @return  string
+     * @return string
      */
     abstract public function authorizeUrl();
 
@@ -122,16 +122,16 @@ abstract class Provider
      *
      *     $url = $provider->url_access_token();
      *
-     * @return  string
+     * @return string
      */
     abstract public function accessTokenUrl();
-    
+
     /**
      * Returns basic information about the user.
      *
      *     $url = $provider->get_user_info();
      *
-     * @return  string
+     * @return string
      */
     abstract public function getUserInfo(Consumer $consumer, Token $token);
 
@@ -142,7 +142,7 @@ abstract class Provider
      *
      * @param   Consumer  consumer
      * @param   array           additional request parameters
-     * @return  Token_Request
+     * @return Token_Request
      * @uses    Request_Token
      */
     public function requestToken($redirect_url = null, array $params = NULL)
@@ -157,8 +157,7 @@ abstract class Provider
             'scope'              => $scope
         ));
 
-        if ($params)
-        {
+        if ($params) {
             // Load user parameters
             $request->params($params);
         }
@@ -194,7 +193,7 @@ abstract class Provider
         } else {
             $token = $callback();
 
-            if ( ! empty($token) AND $token->access_token !== $_REQUEST['oauth_token']) {   
+            if ( ! empty($token) AND $token->access_token !== $_REQUEST['oauth_token']) {
                 throw new Exception('OAuth token empty or does not match');
             }
 
@@ -218,7 +217,7 @@ abstract class Provider
      *
      * @param   Token_Request  token
      * @param   array                additional request parameters
-     * @return  string
+     * @return string
      */
     public function authorize(RequestToken $token, array $params = NULL)
     {
@@ -243,7 +242,7 @@ abstract class Provider
      * @param   Consumer       consumer
      * @param   Token_Request  token
      * @param   array                additional request parameters
-     * @return  Token_Access
+     * @return Token_Access
      */
     public function accessToken(RequestToken $token, array $params = null)
     {
@@ -254,8 +253,7 @@ abstract class Provider
             'oauth_verifier'     => $token->verifier,
         ));
 
-        if ($params)
-        {
+        if ($params) {
             // Load user parameters
             $request->params($params);
         }
@@ -265,7 +263,7 @@ abstract class Provider
 
         // Create a response from the request
         $response = $request->execute();
-        
+
         // Store this token somewhere useful
         return new AccessToken(array(
             'access_token'  => $response->param('oauth_token'),

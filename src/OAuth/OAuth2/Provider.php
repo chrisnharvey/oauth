@@ -57,8 +57,8 @@ abstract class Provider
      *
      * Any of the provider options can be set here, such as app_id or secret.
      *
-     * @param   array $options provider options
-     * @throws  Exception if a required option is not provided
+     * @param  array     $options provider options
+     * @throws Exception if a required option is not provided
      */
     public function __construct(array $options = array())
     {
@@ -71,7 +71,7 @@ abstract class Provider
         }
 
         $this->client_id = $options['id'];
-        
+
         isset($options['callback']) and $this->callback = $options['callback'];
         isset($options['secret']) and $this->client_secret = $options['secret'];
         isset($options['scope']) and $this->scope = $options['scope'];
@@ -85,8 +85,8 @@ abstract class Provider
      *     // Get the provider signature
      *     $signature = $provider->signature;
      *
-     * @param   string $key variable name
-     * @return  mixed
+     * @param  string $key variable name
+     * @return mixed
      */
     public function __get($key)
     {
@@ -98,7 +98,7 @@ abstract class Provider
      *
      *     $url = $provider->url_authorize();
      *
-     * @return  string
+     * @return string
      */
     abstract public function authorizeUrl();
 
@@ -107,19 +107,19 @@ abstract class Provider
      *
      *     $url = $provider->url_access_token();
      *
-     * @return  string
+     * @return string
      */
     abstract public function accessTokenUrl();
 
     /**
-     * @param OAuth2_Token_Access $token
-     * @return array basic user info
+     * @param  OAuth2_Token_Access $token
+     * @return array               basic user info
      */
     abstract public function getUserInfo(Access $token);
 
     public function process(callable $process)
     {
-        if ( ! $_GET['code']) {
+        if (! $_GET['code']) {
             // By sending no options it'll come back here
             $params = $this->authorize();
 
@@ -133,7 +133,7 @@ abstract class Provider
 
     /*
     * Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
-    */  
+    */
     public function authorize($options = array())
     {
         $state = md5(uniqid(rand(), true));
@@ -146,9 +146,9 @@ abstract class Provider
             'response_type'     => 'code',
             'approval_prompt'   => 'force' // - google force-recheck
         );
-        
+
         $params = array_merge($params, $this->params);
-        
+
         return $params;
     }
 
@@ -157,7 +157,7 @@ abstract class Provider
     *
     * @param    string  The access code
     * @return   object  Success or failure along with the response details
-    */  
+    */
     public function access($code, $options = array())
     {
         $params = array(
@@ -165,7 +165,7 @@ abstract class Provider
             'client_secret' => $this->client_secret,
             'grant_type'    => isset($options['grant_type']) ? $options['grant_type'] : 'authorization_code',
         );
-        
+
         $params = array_merge($params, $this->params);
 
         switch ($params['grant_type']) {
@@ -218,7 +218,7 @@ abstract class Provider
         if ( ! empty($return['error'])) {
             throw new OAuth2_Exception($return);
         }
-        
+
         switch ($params['grant_type']) {
             case 'authorization_code':
                 return new Access($return);
@@ -228,7 +228,7 @@ abstract class Provider
                 return new Refresh($return);
             break;
         }
-        
+
     }
 
 }

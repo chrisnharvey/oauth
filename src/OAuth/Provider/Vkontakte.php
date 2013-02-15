@@ -39,6 +39,7 @@ class Vkontakte extends \OAuth\OAuth2\Provider
         $user = json_decode(file_get_contents($url))->response;
 
         if(sizeof($user)==0)
+
             return null;
         else
             $user = $user[0];

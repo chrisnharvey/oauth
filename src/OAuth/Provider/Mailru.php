@@ -25,7 +25,7 @@ class Mailru extends \OAuth\OAuth2\Provider
     {
         return 'https://connect.mail.ru/oauth/token';
     }
-    
+
     protected function signServerServer(array $request_params, $secret_key)
     {
         ksort($request_params);
@@ -33,6 +33,7 @@ class Mailru extends \OAuth\OAuth2\Provider
         foreach ($request_params as $key => $value) {
             $params .= "$key=$value";
         }
+
         return md5($params . $secret_key);
     }
 
@@ -45,7 +46,7 @@ class Mailru extends \OAuth\OAuth2\Provider
             'access_token' => $token->access_token,
             'secure' => 1
         );
-        
+
         $sig = $this->signServerServer($request_params,$this->client_secret);
         $url = 'http://www.appsmail.ru/platform/api?'.http_build_query($request_params).'&sig='.$sig;
 
@@ -61,7 +62,7 @@ class Mailru extends \OAuth\OAuth2\Provider
             'image' => isset($user[0]->pic_big) ? $user[0]->pic_big : null,
         );
     }
-    
+
     public function authorize($options = array())
     {
         $state = md5(uniqid(rand(), TRUE));
