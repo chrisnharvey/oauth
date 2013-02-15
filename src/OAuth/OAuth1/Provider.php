@@ -54,6 +54,8 @@ abstract class Provider
      */
     public $scope_seperator = ',';
 
+    protected $token;
+
     /**
      * Overloads default class properties from the options.
      *
@@ -181,16 +183,31 @@ abstract class Provider
     {
         if ( ! isset($_GET['oauth_token'])) {
             // Get a request token for the consumer
-            $data['token'] = $this->requestToken($callbackUrl);
+            $token = $this->requestToken();
 
             // Get the URL to the twitter login page
-            $data['url'] = $this->authorize($data['token'], array(
-                'oauth_callback' => $callbackUrl,
+            $url = $this->authorize($token, array(
+                'oauth_callback' => $this->consumer->redirect_url,
             ));
 
-            return $data;
+            $process($url, $token);
         } else {
-            return false;
+            $token = $callback();
+
+            if ( ! empty($token) AND $token->access_token !== $_REQUEST['oauth_token']) {   
+                throw new Exception('OAuth token empty or does not match');
+            }
+
+            // Get the verifier
+            $verifier = $_REQUEST['oauth_verifier'];
+
+            // Store the verifier in the token
+            $token->verifier($verifier);
+
+            // Exchange the request token for an access token
+            $this->token = $this->accessToken($token);
+
+            return $this;
         }
     }
 
