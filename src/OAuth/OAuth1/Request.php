@@ -160,7 +160,7 @@ class Request
 	 * @param   Request   request to sign
 	 * @return  string
 	 * @uses    OAuth::urlencode
-	 * @uses    OAuth::normalize_params
+	 * @uses    OAuth::normalizeParams
 	 */
 	public function base_string()
 	{
@@ -176,7 +176,7 @@ class Request
 		return implode('&', array(
 			$this->method,
 			OAuth::urlencode($url),
-			OAuth::urlencode(OAuth::normalize_params($params)),
+			OAuth::urlencode(OAuth::normalizeParams($params)),
 		));
 	}
 
@@ -364,7 +364,7 @@ class Request
 			}
 		}
 
-		return $as_string ? OAuth::normalize_params($params) : $params;
+		return $as_string ? OAuth::normalizeParams($params) : $params;
 	}
 
 	/**

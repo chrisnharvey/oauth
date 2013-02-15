@@ -121,7 +121,7 @@ class OAuth {
 	/**
 	 * Normalize all request parameters into a string.
 	 *
-	 *     $query = OAuth::normalize_params($params);
+	 *     $query = OAuth::normalizeParams($params);
 	 *
 	 * [!!] This method implements [OAuth 1.0 Spec 9.1.1](http://oauth.net/core/1.0/#rfc.section.9.1.1).
 	 *
@@ -129,7 +129,7 @@ class OAuth {
 	 * @return  string
 	 * @uses    OAuth::urlencode
 	 */
-	public static function normalize_params(array $params = NULL)
+	public static function normalizeParams(array $params = NULL)
 	{
 		if ( ! $params)
 		{
