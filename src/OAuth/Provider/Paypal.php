@@ -36,7 +36,7 @@ class Paypal extends \OAuth\OAuth2\Provider
         return 'https://identity.x.com/xidentity/oauthtokenservice';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $url = 'https://identity.x.com/xidentity/resources/profile/me?' . http_build_query(array(
             'oauth_token' => $token->access_token

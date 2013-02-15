@@ -31,7 +31,7 @@ class Mailchimp extends \OAuth\OAuth2\Provider
         return 'https://login.mailchimp.com/oauth2/token';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         // Create a response from the request
         return array(

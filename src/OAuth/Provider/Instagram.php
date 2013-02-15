@@ -36,7 +36,7 @@ class Instagram extends \OAuth\OAuth2\Provider
         return 'https://api.instagram.com/oauth/access_token';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $user = $token->user;
 

@@ -37,7 +37,7 @@ class Mailru extends \OAuth\OAuth2\Provider
         return md5($params . $secret_key);
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $request_params = array(
             'app_id' => $this->client_id,

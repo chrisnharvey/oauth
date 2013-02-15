@@ -115,7 +115,7 @@ abstract class Provider
      * @param  OAuth2_Token_Access $token
      * @return array               basic user info
      */
-    abstract public function getUserInfo(Access $token);
+    abstract public function getUserInfo();
 
     public function process(callable $process)
     {

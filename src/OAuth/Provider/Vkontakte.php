@@ -27,7 +27,7 @@ class Vkontakte extends \OAuth\OAuth2\Provider
         return 'https://oauth.vk.com/access_token';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $scope = array('nickname', 'screen_name','photo_big');
         $url = 'https://api.vk.com/method/users.get?'.http_build_query(array(

@@ -26,7 +26,7 @@ class Yandex extends \OAuth\OAuth2\Provider
         return 'https://oauth.yandex.ru/token';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $opts = array(
             'http' => array(

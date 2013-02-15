@@ -31,7 +31,7 @@ class Soundcloud extends \OAuth\OAuth2\Provider
         return 'https://api.soundcloud.com/oauth2/token';
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $url = 'https://api.soundcloud.com/me.json?'.http_build_query(array(
             'oauth_token' => $token->access_token,

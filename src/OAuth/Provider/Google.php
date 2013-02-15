@@ -65,7 +65,7 @@ class Google extends \OAuth\OAuth2\Provider
         return parent::access($code, $options);
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&'.http_build_query(array(
             'access_token' => $token->access_token,

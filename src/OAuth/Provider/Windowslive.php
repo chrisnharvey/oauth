@@ -41,7 +41,7 @@ class Windowslive extends \OAuth\OAuth2\Provider
     ** use of scopes, check out the document at
     ** http://msdn.microsoft.com/en-gb/library/hh243648.aspx#user
     *********************************/
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         // define the get user information token
         $url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(

@@ -44,7 +44,7 @@ class Blooie extends \OAuth\OAuth2\Provider
         }
     }
 
-    public function getUserInfo(Access $token)
+    public function getUserInfo()
     {
         $url = 'https://graph.facebook.com/me?'.http_build_query(array(
             'access_token' => $token->access_token,

@@ -31,7 +31,7 @@ class Linkedin extends \OAuth\OAuth1\Provider
         return 'https://api.linkedin.com/uas/oauth/accessToken';
     }
 
-    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo()
     {
         // Create a new GET request with the required parameters
         $url = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,member-url-resources,picture-url,location,public-profile-url)';

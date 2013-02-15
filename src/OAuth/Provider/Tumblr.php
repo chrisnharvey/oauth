@@ -34,7 +34,7 @@ class Tumblr extends \OAuth\OAuth1\Provider
         return 'http://www.tumblr.com/oauth/access_token';
     }
 
-    public function getUserInfo(OAuth_Consumer $consumer, OAuth_Token $token)
+    public function getUserInfo()
     {
         // Create a new GET request with the required parameters
         $request = OAuth_Request::forge('resource', 'GET', 'http://api.tumblr.com/v2/user/info', array(
