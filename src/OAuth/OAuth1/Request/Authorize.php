@@ -13,7 +13,7 @@ class Authorize extends \OAuth\OAuth1\Request {
 
 	public function execute(array $options = NULL)
 	{
-		return redirect($this->as_url());
+		return redirect($this->asUrl());
 	}
 
 } // End Request_Authorize

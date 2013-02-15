@@ -40,7 +40,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
 		$key = $this->key($consumer, $token);
 
 		// Get the base string for the signature
-		$base_string = $request->base_string();
+		$base_string = $request->baseString();
 
 		// Sign the base string using the key
 		return base64_encode(hash_hmac('sha1', $base_string, $key, TRUE));

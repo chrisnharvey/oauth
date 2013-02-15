@@ -153,7 +153,7 @@ class Request
 	/**
 	 * Get the base signature string for a request.
 	 *
-	 *     $base = $request->base_string();
+	 *     $base = $request->baseString();
 	 *
 	 * [!!] This method implements [OAuth 1.0 Spec A5.1](http://oauth.net/core/1.0/#rfc.section.A.5.1).
 	 *
@@ -162,7 +162,7 @@ class Request
 	 * @uses    OAuth::urlencode
 	 * @uses    OAuth::normalizeParams
 	 */
-	public function base_string()
+	public function baseString()
 	{
 		$url = $this->url;
 
@@ -303,13 +303,13 @@ class Request
 	/**
 	 * Convert the request parameters into an `Authorization` header.
 	 *
-	 *     $header = $request->as_header();
+	 *     $header = $request->asHeader();
 	 *
 	 * [!!] This method implements [OAuth 1.0 Spec 5.4.1](http://oauth.net/core/1.0/#rfc.section.5.4.1).
 	 *
 	 * @return  string
 	 */
-	public function as_header()
+	public function asHeader()
 	{
 		$header = array();
 
@@ -330,7 +330,7 @@ class Request
 	 * Convert the request parameters into a query string, suitable for GET and
 	 * POST requests.
 	 *
-	 *     $query = $request->as_query();
+	 *     $query = $request->asQuery();
 	 *
 	 * [!!] This method implements [OAuth 1.0 Spec 5.2 (2,3)](http://oauth.net/core/1.0/#rfc.section.5.2).
 	 *
@@ -338,7 +338,7 @@ class Request
 	 * @param   boolean   return a normalized string?
 	 * @return  string
 	 */
-	public function as_query($include_oauth = NULL, $as_string = TRUE)
+	public function asQuery($include_oauth = NULL, $as_string = TRUE)
 	{
 		if ($include_oauth === NULL)
 		{
@@ -370,14 +370,14 @@ class Request
 	/**
 	 * Return the entire request URL with the parameters as a GET string.
 	 *
-	 *     $url = $request->as_url();
+	 *     $url = $request->asUrl();
 	 *
 	 * @return  string
 	 * @uses    Request::as_query
 	 */
-	public function as_url()
+	public function asUrl()
 	{
-		return $this->url.'?'.$this->as_query(TRUE);
+		return $this->url.'?'.$this->asQuery(TRUE);
 	}
 
 	/**
@@ -458,7 +458,7 @@ class Request
 			$headers = isset($options[CURLOPT_HTTPHEADER]) ? $options[CURLOPT_HTTPHEADER] : array();
 
 			// Add the Authorization header
-			$headers[] = 'Authorization: '.$this->as_header();
+			$headers[] = 'Authorization: '.$this->asHeader();
 
 			// Store the new headers
 			$options[CURLOPT_HTTPHEADER] = $headers;
@@ -469,13 +469,13 @@ class Request
 			// Send the request as a POST
 			$options[CURLOPT_POST] = TRUE;
 
-			if ($post = $this->as_query(NULL, empty($this->upload)))
+			if ($post = $this->asQuery(NULL, empty($this->upload)))
 			{
 				// Attach the post fields to the request
 				$options[CURLOPT_POSTFIELDS] = $post;
 			}
 		}
-		elseif ($query = $this->as_query())
+		elseif ($query = $this->asQuery())
 		{
 			// Append the parameters to the query string
 			$url = "{$url}?{$query}";

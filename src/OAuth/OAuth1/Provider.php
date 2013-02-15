@@ -232,7 +232,7 @@ abstract class Provider
             $request->params($params);
         }
 
-        return $request->as_url();
+        return $request->asUrl();
     }
 
     /**
