@@ -261,7 +261,7 @@ abstract class Provider
         }
 
         // Sign the request using only the consumer, no token is available yet
-        $request->sign($this->signature, $consumer, $token);
+        $request->sign($this->signature, $this->consumer, $token);
 
         // Create a response from the request
         $response = $request->execute();
