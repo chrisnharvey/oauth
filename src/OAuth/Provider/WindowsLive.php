@@ -14,7 +14,7 @@ use \OAuth\OAuth2\Token\Access;
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-class Windowslive extends \OAuth\OAuth2\Provider
+class WindowsLive extends \OAuth\OAuth2\Provider
 {
     protected $scope = array('wl.basic', 'wl.emails');
 
