@@ -47,7 +47,6 @@ class Paypal extends \OAuth\OAuth2\Provider
 
         return array(
             'uid' => $user['userId'],
-            'nickname' => url_title($user['fullName'], '_', true),
             'name' => $user['fullName'],
             'first_name' => $user['firstName'],
             'last_name' => $user['lastName'],
