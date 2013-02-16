@@ -125,7 +125,7 @@ abstract class Provider
 
             $process("{$this->authorizeUrl()}?".http_build_query($params));
         } else {
-            $this->token = $provider->access($_GET['code']);
+            $this->token = $this->access($_GET['code']);
 
             return $this;
         }
