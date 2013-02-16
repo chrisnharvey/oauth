@@ -133,7 +133,7 @@ abstract class Provider
      *
      * @return string
      */
-    abstract public function getUserInfo(Consumer $consumer, Token $token);
+    abstract public function getUserInfo();
 
     /**
      * Ask for a request token from the OAuth provider.
