@@ -198,11 +198,11 @@ abstract class Provider
             }
 
             // Get the verifier
-            $verifier = $_REQUEST['oauth_verifier'];
-
-            // Store the verifier in the token
-            $token->verifier($verifier);
-
+            if (isset($_REQUEST['oauth_verifier'])) {
+                // Store the verifier in the token
+                $token->verifier($_REQUEST['oauth_verifier']);
+            }
+                
             // Exchange the request token for an access token
             $this->token = $this->accessToken($token);
 
