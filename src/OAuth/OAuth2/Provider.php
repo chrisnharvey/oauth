@@ -127,7 +127,7 @@ abstract class Provider
         } else {
             $this->token = $provider->access($_GET['code']);
 
-            return $this
+            return $this;
         }
     }
 
