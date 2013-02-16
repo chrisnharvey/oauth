@@ -40,12 +40,12 @@ class Tumblr extends \OAuth\OAuth1\Provider
     {
         // Create a new GET request with the required parameters
         $request = new Resource('GET', 'http://api.tumblr.com/v2/user/info', array(
-            'oauth_consumer_key' => $consumer->key,
+            'oauth_consumer_key' => $this->consumer->client_id,
             'oauth_token' => $this->token->access_token,
         ));
 
         // Sign the request using the consumer and token
-        $request->sign($this->signature, $consumer, $this->token);
+        $request->sign($this->signature, $this->consumer, $this->token);
 
         $response = json_decode($request->execute());
 
