@@ -193,7 +193,7 @@ abstract class Provider
         } else {
             $token = $callback();
 
-            if ( ! empty($token) AND $token->access_token !== $_REQUEST['oauth_token']) {
+            if (empty($token) or $token->access_token != $_REQUEST['oauth_token']) {
                 throw new Exception('OAuth token empty or does not match');
             }
 
