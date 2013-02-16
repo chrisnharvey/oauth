@@ -28,7 +28,7 @@ class Facebook extends \OAuth\OAuth2\Provider
         return 'https://graph.facebook.com/oauth/access_token';
     }
 
-    public function getUserInfo(\OAuth\OAuth2\Token\Access $this->token)
+    public function getUserInfo()
     {
         $url = 'https://graph.facebook.com/me?'.http_build_query(array(
             'access_token' => $this->token->access_token,
