@@ -27,7 +27,7 @@ class Flickr extends \OAuth\OAuth1\Provider
     {
         // Create a new GET request with the required parameters
         $request = new Resource('GET', 'http://api.flickr.com/services/rest', array(
-            'oauth_consumer_key' => $consumer->key,
+            'oauth_consumer_key' => $this->consumer->client_id,
             'oauth_token' => $this->token->access_token,
             'nojsoncallback' => 1,
             'format' => 'json',
@@ -35,7 +35,7 @@ class Flickr extends \OAuth\OAuth1\Provider
         ));
 
         // Sign the request using the consumer and token
-        $request->sign($this->signature, $consumer, $this->token);
+        $request->sign($this->signature, $this->consumer, $this->token);
 
         $response = json_decode($request->execute(), true);
 
