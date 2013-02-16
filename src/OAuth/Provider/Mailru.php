@@ -40,7 +40,7 @@ class Mailru extends \OAuth\OAuth2\Provider
     public function getUserInfo()
     {
         $request_params = array(
-            'app_id' => $this->client_id,
+            'app_id' => $this->consumer->client_id,
             'method' => 'users.getInfo',
             'uids' => $this->token->uid,
             'access_token' => $this->token->access_token,
