@@ -75,7 +75,6 @@ class Google extends \OAuth\OAuth2\Provider
 
         return array(
             'uid' => $user['id'],
-            'nickname' => url_title($user['name'], '_', true),
             'name' => $user['name'],
             'first_name' => $user['given_name'],
             'last_name' => $user['family_name'],
