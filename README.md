@@ -35,7 +35,7 @@ In this example we will authenticate the user using Twitter.
 ```php
 $provider = \OAuth\OAuth::provider('Twitter', [
 	'id' => 'CLIENT_ID',
-	'secret' => 'CLIENT_SECREN',
+	'secret' => 'CLIENT_SECRET',
 	'redirect_url' => 'URL_TO_THIS_PAGE'
 ]);
 
