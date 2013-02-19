@@ -23,6 +23,7 @@ authenticates with an OAuth provider, which in this example would be Twitter its
 - PayPal
 - Soundcloud
 - Tumblr
+- Twitter
 - Vkontakte
 - Windows Live
 - Yandex
