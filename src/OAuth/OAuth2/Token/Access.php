@@ -1,6 +1,9 @@
 <?php
 
 namespace OAuth\OAuth2\Token;
+
+use \OAuth\OAuth2\Exception;
+
 /**
  * OAuth2 Token
  *
