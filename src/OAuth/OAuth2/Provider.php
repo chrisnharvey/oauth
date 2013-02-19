@@ -119,7 +119,7 @@ abstract class Provider
 
     public function process(callable $process)
     {
-        if (! $_GET['code']) {
+        if (! isset($_GET['code'])) {
             // By sending no options it'll come back here
             $params = $this->authorize();
 
