@@ -9,24 +9,24 @@ Authorize users with your application using multiple OAuth 1 and OAuth 2 provide
 OAuth is split into two sections, clients and providers. A client is an application - perhaps a basic Twitter feed aggregator - which 
 authenticates with an OAuth provider, which in this example would be Twitter itself. You can interact with any provider which is supported in the list below:
 
+- Appnet
+- Dropbox
 - Facebook
+- Flickr
 - Foursquare
 - GitHub
 - Google
-- PayPal
 - Instagram
-- Soundcloud
-- Windows Live
-- YouTube
-- Dropbox
-- Flickr
 - LinkedIn
-- Tumblr
 - Mailchimp
 - Mailru
+- PayPal
+- Soundcloud
+- Tumblr
 - Vkontakte
+- Windows Live
 - Yandex
-- Appnet
+- YouTube
 
 ## Usage Example
 
