@@ -1,5 +1,7 @@
 <?php
 
-class OAuth_Request_Credentials extends OAuth_Request
+namespace OAuth\OAuth1\Request;
+
+class Credentials extends \OAuth\OAuth1\Request
 {
-} // End OAuth_Request_Credentials
+}
