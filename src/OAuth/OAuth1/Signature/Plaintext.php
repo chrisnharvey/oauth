@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php
 /**
  * The PLAINTEXT signature does not provide any security protection and should
  * only be used over a secure channel such as HTTPS.
