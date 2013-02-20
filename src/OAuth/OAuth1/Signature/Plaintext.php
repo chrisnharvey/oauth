@@ -11,9 +11,9 @@
  * @since      3.0.7
  */
 
-namespace OAuth;
+namespace OAuth\OAuth1\Signature;
 
-class Plaintext extends Signature
+class Plaintext extends \OAuth\OAuth1\Signature
 {
     protected $name = 'PLAINTEXT';
 
