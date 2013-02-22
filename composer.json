@@ -1,8 +1,14 @@
 {
     "name": "chrisnharvey/oauth",
-    "type": "library",
-    "license": "dbad-license",
     "description": "Authorize users in your application with multiple OAuth 1.0 and OAuth 2.0 providers",
+    "keywords": ["oauth", "authentication", "authorization", "providers", "twitter", "facebook", "google"],
+    "license": "dbad-license",
+    "authors": [
+        {
+            "name": "Chris Harvey",
+            "email": "chris@chrisnharvey.com"
+        }
+    ],
     "require": {
         "php": ">=5.3.0"
     },
