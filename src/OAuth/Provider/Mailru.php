@@ -66,7 +66,7 @@ class Mailru extends \OAuth\OAuth2\Provider
     public function authorize($options = array())
     {
         $state = md5(uniqid(rand(), true));
-        get_instance()->session->set_userdata('state', $state);
+        $_SESSION['state'] = $state;
 
         $params = array(
             'client_id'         => $this->client_id,

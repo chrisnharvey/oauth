@@ -268,7 +268,7 @@ abstract class Provider
         return new AccessToken(array(
             'access_token'  => $response->param('oauth_token'),
             'secret' => $response->param('oauth_token_secret'),
-            'uid' => $response->param($this->uid_key) ? $response->param($this->uid_key) : get_instance()->input->get_post($this->uid_key),
+            'uid' => $response->param($this->uid_key) ? $response->param($this->uid_key) : $_REQUEST[$this->uid_key],
         ));
     }
 
