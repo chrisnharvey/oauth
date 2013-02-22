@@ -31,7 +31,7 @@ abstract class Token
      * @param   array   token options
      * @return void
      */
-    public function __construct(array $options = NULL)
+    public function __construct(array $options = null)
     {
         if ( ! isset($options['access_token'])) {
             throw new Exception('Required option not passed: access_token');

@@ -12,7 +12,7 @@ class Request
     /**
      * @var  boolean  send Authorization header?
      */
-    public $send_header = TRUE;
+    public $send_header = true;
 
     /**
      * @var  string  request type name: token, authorize, access, resource
@@ -52,7 +52,7 @@ class Request
      * @param  array   request parameters
      * @uses   OAuth::parseUrl
      */
-    public function __construct($method, $url, array $params = NULL)
+    public function __construct($method, $url, array $params = null)
     {
         if ($method) {
             // Set the request method
@@ -176,7 +176,7 @@ class Request
     }
 
     /**
-     * Parameter getter and setter. Setting the value to `NULL` will remove it.
+     * Parameter getter and setter. Setting the value to `null` will remove it.
      *
      *     // Set the "oauth_consumer_key" to a new value
      *     $request->param('oauth_consumer_key', $key);
@@ -191,9 +191,9 @@ class Request
      * @return  $this    when setting
      * @uses    Arr::get
      */
-    public function param($name, $value = NULL, $duplicate = FALSE)
+    public function param($name, $value = null, $duplicate = false)
     {
-        if ($value === NULL) {
+        if ($value === null) {
             // Get the parameter
             return isset($this->params[$name]) ? $this->params[$name] : null;
         }
@@ -224,7 +224,7 @@ class Request
      * @return  $this
      * @uses    Request::param
      */
-    public function params(array $params, $duplicate = FALSE)
+    public function params(array $params, $duplicate = false)
     {
         foreach ($params as $name => $value) {
             $this->param($name, $value, $duplicate);
@@ -234,7 +234,7 @@ class Request
     }
 
     /**
-     * Upload getter and setter. Setting the value to `NULL` will remove it.
+     * Upload getter and setter. Setting the value to `null` will remove it.
      *
      *     // Set the "image" file path for uploading
      *     $request->upload('image', $file_path);
@@ -248,11 +248,11 @@ class Request
      * @return  $this    when setting
      * @uses    Request::param
      */
-    public function upload($name, $value = NULL)
+    public function upload($name, $value = null)
     {
-        if ($value !== NULL) {
+        if ($value !== null) {
             // This is an upload parameter
-            $this->upload[$name] = TRUE;
+            $this->upload[$name] = true;
 
             // Get the mime type of the image
             $mime = get_mime_by_extension($value);
@@ -261,7 +261,7 @@ class Request
             $value = "@{$value};type={$mime}";
         }
 
-        return $this->param($name, $value, FALSE);
+        return $this->param($name, $value, false);
     }
 
     /**
@@ -274,9 +274,9 @@ class Request
      * @return boolean when getting
      * @return  $this    when setting
      */
-    public function required($param, $value = NULL)
+    public function required($param, $value = null)
     {
-        if ($value === NULL) {
+        if ($value === null) {
             // Get the current status
             return ! empty($this->required[$param]);
         }
@@ -323,9 +323,9 @@ class Request
      * @param   boolean   return a normalized string?
      * @return string
      */
-    public function asQuery($include_oauth = NULL, $as_string = TRUE)
+    public function asQuery($include_oauth = null, $as_string = true)
     {
-        if ($include_oauth === NULL) {
+        if ($include_oauth === null) {
             // If we are sending a header, OAuth parameters should not be
             // included in the query string.
             $include_oauth = ! $this->send_header;
@@ -356,7 +356,7 @@ class Request
      */
     public function asUrl()
     {
-        return $this->url.'?'.$this->asQuery(TRUE);
+        return $this->url.'?'.$this->asQuery(true);
     }
 
     /**
@@ -368,7 +368,7 @@ class Request
      * @return  $this
      * @uses    Signature::sign
      */
-    public function sign(Signature $signature, Consumer $consumer, Token $token = NULL)
+    public function sign(Signature $signature, Consumer $consumer, Token $token = null)
     {
         // Create a new signature class from the method
         $this->param('oauth_signature_method', $signature->name);
@@ -392,7 +392,7 @@ class Request
      *         // Request has missing parameters
      *     }
      *
-     * @return TRUE
+     * @return true
      * @throws Exception
      */
     public function check()
@@ -403,7 +403,7 @@ class Request
             }
         }
 
-        return TRUE;
+        return true;
     }
 
     /**
@@ -415,7 +415,7 @@ class Request
      * @uses    Arr::get
      * @uses    Remote::get
      */
-    public function execute(array $options = NULL)
+    public function execute(array $options = null)
     {
         // Check that all required fields are set
         $this->check();
@@ -441,9 +441,9 @@ class Request
 
         if ($this->method === 'POST') {
             // Send the request as a POST
-            $options[CURLOPT_POST] = TRUE;
+            $options[CURLOPT_POST] = true;
 
-            if ($post = $this->asQuery(NULL, empty($this->upload))) {
+            if ($post = $this->asQuery(null, empty($this->upload))) {
                 // Attach the post fields to the request
                 $options[CURLOPT_POSTFIELDS] = $post;
             }

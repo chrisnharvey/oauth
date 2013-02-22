@@ -34,7 +34,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
      * @uses    Signature::key
      * @uses    Request::base_string
      */
-    public function sign(Request $request, Consumer $consumer, Token $token = NULL)
+    public function sign(Request $request, Consumer $consumer, Token $token = null)
     {
         // Get the signing key
         $key = $this->key($consumer, $token);
@@ -43,7 +43,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
         $base_string = $request->baseString();
 
         // Sign the base string using the key
-        return base64_encode(hash_hmac('sha1', $base_string, $key, TRUE));
+        return base64_encode(hash_hmac('sha1', $base_string, $key, true));
     }
 
     /**
@@ -63,7 +63,7 @@ class HMACSHA1 extends \OAuth\OAuth1\Signature
      * @return boolean
      * @uses    Signature_HMAC_SHA1::sign
      */
-    public function verify($signature, Request $request, Consumer $consumer, Token $token = NULL)
+    public function verify($signature, Request $request, Consumer $consumer, Token $token = null)
     {
         return $signature === $this->sign($request, $consumer, $token);
     }

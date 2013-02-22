@@ -10,7 +10,7 @@ class Response
      */
     protected $params = array();
 
-    public function __construct($body = NULL)
+    public function __construct($body = null)
     {
         if ($body) {
             $this->params = OAuth::parseParams($body);
@@ -31,7 +31,7 @@ class Response
         return $this->$key;
     }
 
-    public function param($name, $default = NULL)
+    public function param($name, $default = null)
     {
         return isset($this->params[$name]) ? $this->params[$name] : $default;
     }

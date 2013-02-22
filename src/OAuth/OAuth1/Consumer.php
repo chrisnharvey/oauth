@@ -35,7 +35,7 @@ class Consumer
      * @param   array  consumer options, key and secret are required
      * @return void
      */
-    public function __construct(array $options = NULL)
+    public function __construct(array $options = null)
     {
         if (empty($options['id'])) {
             throw new Exception('Required option not provided: id');

@@ -18,7 +18,7 @@ class OAuth
      *
      *     // Do a POST request
      *     $data = Remote::get($url, array(
-     *         CURLOPT_POST       => TRUE,
+     *         CURLOPT_POST       => true,
      *         CURLOPT_POSTFIELDS => http_build_query($array),
      *     ));
      *
@@ -27,10 +27,10 @@ class OAuth
      * @return string
      * @throws Exception
      */
-    public static function remote($url, array $options = NULL)
+    public static function remote($url, array $options = null)
     {
         // The transfer must always be returned
-        $options[CURLOPT_RETURNTRANSFER] = TRUE;
+        $options[CURLOPT_RETURNTRANSFER] = true;
 
         // Open a new remote connection
         $remote = curl_init($url);
@@ -48,7 +48,7 @@ class OAuth
 
         if ($code AND ($code < 200 OR $code > 299)) {
             $error = $response;
-        } elseif ($response === FALSE) {
+        } elseif ($response === false) {
             $error = curl_error($remote);
         }
 
@@ -122,7 +122,7 @@ class OAuth
      * @return string
      * @uses    OAuth::urlencode
      */
-    public static function normalizeParams(array $params = NULL)
+    public static function normalizeParams(array $params = null)
     {
         if (! $params) {
             // Nothing to do

@@ -39,7 +39,7 @@ abstract class Signature
      * @return string
      * @uses    OAuth::urlencode
      */
-    public function key(Consumer $consumer, Token $token = NULL)
+    public function key(Consumer $consumer, Token $token = null)
     {
         $key = OAuth::urlencode($consumer->secret).'&';
 
@@ -50,8 +50,8 @@ abstract class Signature
         return $key;
     }
 
-    abstract public function sign(Request $request, Consumer $consumer, Token $token = NULL);
+    abstract public function sign(Request $request, Consumer $consumer, Token $token = null);
 
-    abstract public function verify($signature, Request $request, Consumer $consumer, Token $token = NULL);
+    abstract public function verify($signature, Request $request, Consumer $consumer, Token $token = null);
 
 } // End Signature

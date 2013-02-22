@@ -68,7 +68,7 @@ abstract class Provider
      * @param   array   provider options
      * @return void
      */
-    public function __construct(array $options = NULL)
+    public function __construct(array $options = null)
     {
         if (isset($options['signature'])) {
             // Set the signature method name or object
@@ -145,7 +145,7 @@ abstract class Provider
      * @return Token_Request
      * @uses    Request_Token
      */
-    public function requestToken($redirect_url = null, array $params = NULL)
+    public function requestToken($redirect_url = null, array $params = null)
     {
         $redirect_url = $redirect_url ?: $this->consumer->redirect_url;
         $scope = is_array($this->consumer->scope) ? implode($this->consumer->scope_seperator, $this->consumer->scope) : $this->consumer->scope;
@@ -219,7 +219,7 @@ abstract class Provider
      * @param   array                additional request parameters
      * @return string
      */
-    public function authorize(RequestToken $token, array $params = NULL)
+    public function authorize(RequestToken $token, array $params = null)
     {
         // Create a new GET request for a request token with the required parameters
         $request = new AuthorizeRequest('GET', $this->authorizeUrl(), array(

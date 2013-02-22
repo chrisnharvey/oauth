@@ -29,7 +29,7 @@ class Plaintext extends \OAuth\OAuth1\Signature
      * @param   Token     token
      * @return  $this
      */
-    public function sign(Request $request, Consumer $consumer, Token $token = NULL)
+    public function sign(Request $request, Consumer $consumer, Token $token = null)
     {
         // Use the signing key as the signature
         return $this->key($consumer, $token);
@@ -52,7 +52,7 @@ class Plaintext extends \OAuth\OAuth1\Signature
      * @return boolean
      * @uses    Signature_PLAINTEXT::sign
      */
-    public function verify($signature, Request $request, Consumer $consumer, Token $token = NULL)
+    public function verify($signature, Request $request, Consumer $consumer, Token $token = null)
     {
         return $signature === $this->key($consumer, $token);
     }
