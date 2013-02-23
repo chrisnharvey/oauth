@@ -212,11 +212,11 @@ abstract class Provider
             break;
 
             default:
-                throw new OutOfBoundsException("Method '{$this->method}' must be either GET or POST");
+                throw new \OutOfBoundsException("Method '{$this->method}' must be either GET or POST");
         }
 
         if ( ! empty($return['error'])) {
-            throw new OAuth2_Exception($return);
+            throw new Exception($return);
         }
 
         switch ($params['grant_type']) {
