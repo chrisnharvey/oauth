@@ -5,6 +5,7 @@ namespace OAuth\OAuth1\Signature;
 use \OAuth\OAuth1\Request;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Token;
+use \Exception;
 
 /**
  * The HMAC-SHA1 signature provides secure signing using the HMAC-SHA1

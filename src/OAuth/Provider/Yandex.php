@@ -4,6 +4,7 @@ namespace OAuth\Provider;
 
 use \OAuth\OAuth2\Token\Access;
 use \OAuth\OAuth2\Token\Refresh;
+use \OAuth\OAuth2\Exception;
 
 /**
  * Yandex OAuth2 Provider

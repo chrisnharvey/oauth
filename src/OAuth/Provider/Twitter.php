@@ -6,6 +6,7 @@ use \OAuth\OAuth1\Token;
 use \OAuth\OAuth1\Token\Access;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Request\Resource;
+use \Exception;
 
 class Twitter extends \OAuth\OAuth1\Provider
 {

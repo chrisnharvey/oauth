@@ -10,6 +10,7 @@ use \OAuth\OAuth1\Request\Authorize as AuthorizeRequest;
 use \OAuth\OAuth1\Request\Access as AccessRequest;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Signature;
+use \Exception;
 
 /**
  * OAuth Provider

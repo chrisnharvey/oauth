@@ -2,6 +2,8 @@
 
 namespace OAuth\OAuth1;
 
+use \Exception;
+
 class OAuth
 {
     /**

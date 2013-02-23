@@ -2,6 +2,8 @@
 
 namespace OAuth\OAuth1;
 
+use \Exception;
+
 class Request
 {
     /**
@@ -399,7 +401,7 @@ class Request
     {
         foreach ($this->required as $param => $required) {
             if ($required AND ! isset($this->params[$param])) {
-                throw new \Exception(sprintf('Request to %s requires missing parameter "%s"', $this->url, $param));
+                throw new Exception(sprintf('Request to %s requires missing parameter "%s"', $this->url, $param));
             }
         }
 
