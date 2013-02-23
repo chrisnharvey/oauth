@@ -3,6 +3,7 @@
 namespace OAuth\Provider;
 
 use \OAuth\OAuth2\Token\Access;
+use \OAuth\OAuth2\Exception;
 
 /**
  * Google OAuth2 Provider
@@ -59,7 +60,7 @@ class Google extends \OAuth\OAuth2\Provider
     public function access($code, $options = array())
     {
         if ($code === null) {
-            throw new OAuth2_Exception(array('message' => 'Expected Authorization Code from '.ucfirst($this->name).' is missing'));
+            throw new Exception(array('message' => 'Expected Authorization Code from '.ucfirst($this->name).' is missing'));
         }
 
         return parent::access($code, $options);

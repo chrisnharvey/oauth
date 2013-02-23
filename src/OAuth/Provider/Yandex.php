@@ -100,16 +100,16 @@ class Yandex extends \OAuth\OAuth2\Provider
         $return = json_decode($response, true);
 
         if ( ! empty($return['error'])) {
-            throw new OAuth2_Exception($return);
+            throw new Exception($return);
         }
 
         switch ($params['grant_type']) {
             case 'authorization_code':
-                return OAuth2_Token::factory('access', $return);
+                return new Access($return);
             break;
 
             case 'refresh_token':
-                return OAuth2_Token::factory('refresh', $return);
+                return new Refresh($return);
             break;
         }
     }
