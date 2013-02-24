@@ -77,11 +77,9 @@ class Google extends \OAuth\OAuth2\Provider
         return array(
             'uid' => $user['id'],
             'name' => $user['name'],
-            'first_name' => $user['given_name'],
-            'last_name' => $user['family_name'],
             'email' => $user['email'],
             'location' => null,
-            'image' => (isset($user['picture'])) ? $user['picture'] : null,
+            'image' => isset($user['picture']) ? $user['picture'] : null,
             'description' => null,
             'urls' => array(),
         );
