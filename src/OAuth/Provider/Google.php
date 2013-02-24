@@ -27,6 +27,11 @@ class Google extends \OAuth\OAuth2\Provider
      */
     public $scope_seperator = ' ';
 
+    /**
+     * @var string The access type (online/offline)
+     */
+    protected $access_type = 'offline';
+
     public function authorizeUrl()
     {
         return 'https://accounts.google.com/o/oauth2/auth';
@@ -48,7 +53,29 @@ class Google extends \OAuth\OAuth2\Provider
         // Array it if its string
         $options['scope'] = (array) $options['scope'];
 
+        isset($options['access_type'])
+            and $this->access_type = $options['access_type'];
+
         parent::__construct($options);
+    }
+
+    public function authorize($options = array())
+    {
+        $state = md5(uniqid(rand(), true));
+
+        $params = array(
+            'client_id'         => $this->client_id,
+            'redirect_uri'      => isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
+            'state'             => $state,
+            'scope'             => is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
+            'response_type'     => 'code',
+            'approval_prompt'   => 'force', // - google force-recheck
+            'access_type'       => $this->access_type
+        );
+
+        $params = array_merge($params, $this->params);
+
+        return $params;
     }
 
     /*
