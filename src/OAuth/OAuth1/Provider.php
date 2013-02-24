@@ -211,6 +211,11 @@ abstract class Provider
         }
     }
 
+    public function token()
+    {
+        return isset($this->token) ? $this->token : false;
+    }
+
     /**
      * Get the authorization URL for the request token.
      *

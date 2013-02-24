@@ -131,6 +131,11 @@ abstract class Provider
         }
     }
 
+    public function token()
+    {
+        return isset($this->token) ? $this->token : false;
+    }
+
     /*
     * Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
     */
