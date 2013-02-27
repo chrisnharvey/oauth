@@ -190,7 +190,7 @@ abstract class Provider
                 'oauth_callback' => $this->consumer->redirect_url,
             ));
 
-            $process($url, $token);
+            return $process($url, $token);
         } else {
             $token = $callback();
 

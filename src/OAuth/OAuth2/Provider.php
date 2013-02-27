@@ -123,7 +123,7 @@ abstract class Provider
             // By sending no options it'll come back here
             $params = $this->authorize();
 
-            $process("{$this->authorizeUrl()}?".http_build_query($params));
+            return $process("{$this->authorizeUrl()}?".http_build_query($params));
         } else {
             $this->token = $this->access($_GET['code']);
 
