@@ -8,6 +8,7 @@ use \OAuth\OAuth1\Token\Access as AccessToken;
 use \OAuth\OAuth1\Request\Token as TokenRequest;
 use \OAuth\OAuth1\Request\Authorize as AuthorizeRequest;
 use \OAuth\OAuth1\Request\Access as AccessRequest;
+use \OAuth\OAuth1\Request\Resource as ResourceRequest;
 use \OAuth\OAuth1\Consumer;
 use \OAuth\OAuth1\Signature;
 use \Exception;
@@ -214,6 +215,21 @@ abstract class Provider
     public function token()
     {
         return isset($this->token) ? $this->token : false;
+    }
+
+    public function call($method = 'GET', $url, array $params = array())
+    {
+        // Create a new GET request with the required parameters
+        $request = new ResourceRequest($method, $url, array_merge(array(
+            'oauth_consumer_key' => $this->consumer->client_id,
+            'oauth_token' => $this->token->access_token,
+            'user_id' => $this->token->uid,
+        ), $params));
+
+        // Sign the request using the consumer and token
+        $request->sign($this->signature, $this->consumer, $this->token);
+
+        return $request->execute();
     }
 
     /**

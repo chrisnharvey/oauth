@@ -136,6 +136,32 @@ abstract class Provider
         return isset($this->token) ? $this->token : false;
     }
 
+    public function call($method = 'GET', $url, array $params = array(), array $post_params = array())
+    {
+        $url = "{$url}?".http_build_query(array_merge(array(
+            'access_token' => $this->token->access_token,
+        ), $params));
+
+        $ch = curl_init();
+
+        if (! empty($post_params)) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        }
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        $response = curl_exec($ch);
+
+        curl_close ($ch);
+
+        return $response;
+    }
+
     /*
     * Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
     */
