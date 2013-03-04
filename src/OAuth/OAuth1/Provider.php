@@ -229,8 +229,7 @@ abstract class Provider
         // Create a new GET request with the required parameters
         $request = new ResourceRequest($method, $url, array_merge(array(
             'oauth_consumer_key' => $this->consumer->client_id,
-            'oauth_token' => $this->token->access_token,
-            'user_id' => $this->token->uid,
+            'oauth_token' => $this->token->access_token
         ), $params));
 
         // Sign the request using the consumer and token
