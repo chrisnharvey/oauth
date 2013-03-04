@@ -136,6 +136,13 @@ abstract class Provider
         return isset($this->token) ? $this->token : false;
     }
 
+    public function setToken(Access $token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
     public function call($method = 'GET', $url, array $params = array(), array $post_params = array())
     {
         $url = "{$url}?".http_build_query(array_merge(array(

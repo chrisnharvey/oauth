@@ -217,6 +217,13 @@ abstract class Provider
         return isset($this->token) ? $this->token : false;
     }
 
+    public function setToken(AccessToken $token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
     public function call($method = 'GET', $url, array $params = array())
     {
         // Create a new GET request with the required parameters
