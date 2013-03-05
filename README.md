@@ -34,11 +34,11 @@ authenticates with an OAuth provider, which in this example would be Twitter its
 In this example we will authenticate the user using Twitter.
 
 ```php
-$provider = \OAuth\OAuth::provider('Twitter', [
+$provider = \OAuth\OAuth::provider('Twitter', array(
 	'id' => 'CLIENT_ID',
 	'secret' => 'CLIENT_SECRET',
 	'redirect_url' => 'URL_TO_THIS_PAGE'
-]);
+));
 
 $oauth = $provider->process(function($url, $token = null) {
 
