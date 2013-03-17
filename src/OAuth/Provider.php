@@ -9,16 +9,16 @@ use InvalidArgumentException;
 
 class Provider
 {
-	protected $version;
-	protected $provider;
+    protected $version;
+    protected $provider;
 
     public function __construct($provider)
     {
-    	if ($provider instanceof OAuth1Provider) $this->version = 1;
-    	if ($provider instanceof OAuth2Provider) $this->version = 2;
+        if ($provider instanceof OAuth1Provider) $this->version = 1;
+        if ($provider instanceof OAuth2Provider) $this->version = 2;
 
         if ( ! isset($this->version)) {
-        	throw new InvalidArgumentException('Provider must be an instance of OAuth1\Provider\ProviderInterface or OAuth2\Provider\ProviderInterface');
+            throw new InvalidArgumentException('Provider must be an instance of OAuth1\Provider\ProviderInterface or OAuth2\Provider\ProviderInterface');
         }
 
         $this->provider = $provider;
@@ -26,32 +26,32 @@ class Provider
 
     public function process(callable $redirect, callable $callback)
     {
-    	return $this->version == 1
-    		? $this->processOne($redirect, $callback)
-    		: $this->processTwo($redirect);
+        return $this->version == 1
+            ? $this->processOne($redirect, $callback)
+            : $this->processTwo($redirect);
     }
 
     protected function processOne(callable $redirect, callable $callback)
     {
-    	if ($this->provider->isCallback()) {
-		    $this->provider->validateCallback($callback());
+        if ($this->provider->isCallback()) {
+            $this->provider->validateCallback($callback());
 
-		    return $this->provider;
-		} else {
-		    $token = $this->provider->requestToken();
+            return $this->provider;
+        } else {
+            $token = $this->provider->requestToken();
 
-		    $url = $this->provider->authorize($token);
+            $url = $this->provider->authorize($token);
 
-		    $redirect($url, $token);
-		}
+            $redirect($url, $token);
+        }
     }
 
     protected function processTwo(callable $process)
     {
         if ( ! $this->provider->isAuthenticated()) {
-		    $redirect($this->provider->getAuthenticationUrl());
-		} else {
-			return $this->provider;
-		}
+            $redirect($this->provider->getAuthenticationUrl());
+        } else {
+            return $this->provider;
+        }
     }
 }
