@@ -37,7 +37,7 @@ class Twitter extends \OAuth\OAuth1\Provider
         }
 
         // Create a new GET request with the required parameters
-        $request = new Resource('GET', 'http://api.twitter.com/1/users/lookup.json', array(
+        $request = new Resource('GET', 'http://api.twitter.com/1.1/users/lookup.json', array(
             'oauth_consumer_key' => $this->consumer->client_id,
             'oauth_token' => $this->token->access_token,
             'user_id' => $this->token->uid,
