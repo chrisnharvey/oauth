@@ -22,11 +22,13 @@ class YouTube extends \OAuth\Provider\Google
     {
         if(!isset($options['scope']))
         {  
-            $options['scope'] = array();
+            $options['scope'] = array(
+                'https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email',
+                'https://gdata.youtube.com',
+            );
         }
-        
-        array_push($options['scope'], 'https://gdata.youtube.com');
 
-        parent::__construct($options);        
+        parent::__construct($options);
     }
 }
