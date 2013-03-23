@@ -24,6 +24,7 @@ authenticates with an OAuth provider, which in this example would be Twitter its
 - Soundcloud
 - Tumblr
 - Twitter
+- Vimeo
 - Vkontakte
 - Windows Live
 - Yandex
