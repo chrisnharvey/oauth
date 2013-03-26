@@ -46,7 +46,7 @@ class Provider
         }
     }
 
-    protected function processTwo(callable $process)
+    protected function processTwo(callable $redirect)
     {
         if ( ! $this->provider->isAuthenticated()) {
             $redirect($this->provider->getAuthenticationUrl());
